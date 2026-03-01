@@ -1,3 +1,249 @@
+/* Глобальні налаштування */
+:root {
+    --main-color: #1a73e8;
+    --accent-color: #ff9800;
+    --dark-bg: #202124;
+    --light-bg: #f8f9fa;
+    --text-color: #3c4043;
+    --white: #ffffff;
+}
+
 body {
-background-color: aqua;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    color: var(--text-color);
+    background-color: #eef2f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Top Bar */
+.top-bar {
+    background: var(--dark-bg);
+    color: #ccc;
+    font-size: 13px;
+    padding: 8px 0;
+}
+
+.top-bar a { color: #fff; text-decoration: none; margin-left: 15px; }
+.btn-login { background: #444; padding: 4px 12px; border-radius: 4px; }
+
+/* Header */
+header {
+    background: var(--white);
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo { font-size: 28px; font-weight: 900; color: var(--main-color); }
+.logo span { color: var(--accent-color); }
+
+nav ul { display: flex; gap: 25px; list-style: none; margin: 0; }
+nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
+
+/* Hero & Search */
+.hero {
+    background: linear-gradient(45deg, #1a73e8, #0d47a1);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.search-engine {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.input-group { flex: 1; text-align: left; }
+.input-group label { display: block; color: #666; font-size: 12px; margin-bottom: 5px; }
+.input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+
+.btn-search {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0 40px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btn-search:hover { background: #f57c00; transform: translateY(-2px); }
+
+/* Benefits */
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: -40px auto 50px;
+}
+
+.benefit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.benefit-card .icon { font-size: 40px; margin-bottom: 15px; }
+
+/* Grid Layout */
+.content-grid { display: grid; grid-template-columns: 280px 1fr; gap: 30px; margin-bottom: 60px; }
+
+/* Sidebar */
+.sidebar { background: white; padding: 20px; border-radius: 12px; height: fit-content; }
+.filter-box { margin-bottom: 25px; }
+.filter-box h4 { margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.filter-box label { display: block; margin: 10px 0; font-size: 14px; cursor: pointer; }
+
+/* Bus Card */
+.bus-card {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.bus-info { padding: 25px; display: flex; justify-content: space-between; align-items: flex-start; }
+
+.time { font-size: 24px; font-weight: bold; }
+.city { font-weight: 600; font-size: 18px; margin: 5px 0; }
+.station { font-size: 12px; color: #888; max-width: 150px; }
+
+.duration-block { text-align: center; flex: 1; padding: 0 20px; }
+.line { height: 2px; background: #ddd; margin: 10px 0; position: relative; }
+.line::after { content: '🚌'; position: absolute; top: -10px; left: 45%; background: white; padding: 0 5px; }
+/* Статистика */
+.trust-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    margin-top: 40px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--main-color);
+    display: block;
+}
+
+.stat-item p { color: #666; font-weight: 500; margin-top: 5px; }
+
+/* Картки напрямків */
+.top-destinations { margin: 60px auto; }
+.top-destinations h2 { margin-bottom: 30px; color: var(--dark-bg); }
+
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dest-card {
+    height: 300px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.dest-card:hover { transform: scale(1.03); }
+
+.dest-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    text-align: left;
+}
+
+.price-tag { display: block; margin: 10px 0; color: var(--accent-color); font-weight: bold; }
+
+.btn-sm {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid white;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-sm:hover { background: white; color: var(--main-color); }
+
+/* Promo App */
+.app-promo {
+    background: #f1f8ff;
+    padding: 80px 0;
+    margin-top: 60px;
+}
+
+.promo-flex { display: flex; align-items: center; justify-content: space-between; }
+.promo-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--main-color); }
+.promo-text p { font-size: 1.2rem; color: #555; margin-bottom: 30px; }
+
+.app-buttons { display: flex; gap: 15px; }
+
+.phone-mockup {
+    font-size: 250px;
+    filter: drop-shadow(20px 20px 30px rgba(0,0,0,0.1));
+}
+
+
+.bus-footer {
+    background: #fcfcfc;
+    padding: 15px 25px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-price { font-size: 24px; font-weight: bold; color: var(--main-color); margin-left: 10px; }
+.old-price { text-decoration: line-through; color: #aaa; font-size: 14px; }
+
+.btn-buy { background: var(--main-color); color: white; border: none; padding: 12px 30px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+
+/* Footer */
+footer { background: var(--dark-bg); color: #fff; padding: 60px 0; }
+.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.footer-col h4 { margin-bottom: 20px; color: var(--accent-color); }
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a { color: #aaa; text-decoration: none; transition: 0.3s; }
+.footer-col a:hover { color: #fff; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .content-grid { grid-template-columns: 1fr; }
+    .search-engine { flex-direction: column; }
+    .benefits { grid-template-columns: 1fr; }
 }

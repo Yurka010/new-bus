@@ -6,7 +6,228 @@
     <title>Document</title>
 <link rel="stylesheet" href="style.css">
 </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusPortal — Квитки на автобус по Україні та Європі</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    
+
+    <!-- Верхня панель -->
+    <div class="top-bar">
+        <div class="container flex-between">
+            <div class="contacts">📞 0 800 500 700 | ✉️ support@busportal.ua</div>
+            <div class="user-menu">
+                <a href="#">Мій квиток</a>
+                <a href="#" class="btn-login">Увійти</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container flex-between">
+            <div class="logo">Bus<span>Portal</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Пошук</a></li>
+                    <li><a href="#">Розклад</a></li>
+                    <li><a href="#">Перевізники</a></li>
+                    <li><a href="#">Акції</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Секція пошуку з фоном -->
+        <section class="hero">
+            <div class="container">
+                <h1>Купуйте квитки онлайн за 2 хвилини</h1>
+                <form class="search-engine">
+                    <div class="input-group">
+                        <label>Звідки</label>
+                        <input type="text" placeholder="Місто виїзду">
+                    </div>
+                    <div class="input-group">
+                        <label>Куди</label>
+                        <input type="text" placeholder="Місто прибуття">
+                    </div>
+                    <div class="input-group">
+                        <label>Дата</label>
+                        <input type="date">
+                    </div>
+                    <button type="submit" class="btn-search">Знайти рейси</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Переваги -->
+        <section class="benefits container">
+            <div class="benefit-card">
+                <div class="icon">🛡️</div>
+                <h3>Безпечна оплата</h3>
+                <p>Ваші дані захищені протоколом SSL.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">⚡</div>
+                <h3>Миттєвий квиток</h3>
+                <p>Квиток приходить на пошту одразу після оплати.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🎧</div>
+                <h3>Підтримка 24/7</h3>
+                <p>Ми завжди на зв'язку, щоб допомогти вам.</p>
+            </div>
+        </section>
+
+        <!-- Результати та Фільтри -->
+        <div class="content-grid container">
+            <aside class="sidebar">
+                <div class="filter-box">
+                    <h4>Сортування</h4>
+                    <select>
+                        <option>Найдешевші</option>
+                        <option>Найшвидші</option>
+                    </select>
+                </div>
+                <div class="filter-box">
+                    <h4>Час відправлення</h4>
+                    <label><input type="checkbox"> Ранок (06:00 - 12:00)</label>
+                    <label><input type="checkbox"> День (12:00 - 18:00)</label>
+                    <label><input type="checkbox"> Вечір (18:00 - 00:00)</label>
+                </div>
+            </aside>
+
+            <section class="results">
+                <!-- Картка рейсу -->
+                <div class="bus-card">
+                    <div class="bus-info">
+                        <div class="time-block">
+                            <div class="time">08:00</div>
+                            <div class="city">Київ</div>
+                            <div class="station">АС "Київ", вул. С. Петлюри, 32</div>
+                        </div>
+                        <div class="duration-block">
+                            <span>14 год 30 хв</span>
+                            <div class="line"></div>
+                            <small>Прямий рейс</small>
+                        </div>
+                        <div class="time-block">
+                            <div class="time">22:30</div>
+                            <div class="city">Варшава</div>
+                            <div class="station">Автовокзал "Заходня"</div>
+                        </div>
+                    </div>
+                    <div class="bus-footer">
+                        <div class="carrier">Перевізник: <strong>EuroTrans</strong></div>
+                        <div class="price-action">
+                            <span class="old-price">1600 грн</span>
+                            <span class="current-price">1450 грн</span>
+                            <button class="btn-buy">Вибрати</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+<section class="trust-stats container">
+    <div class="stat-item">
+        <span class="stat-number">500+</span>
+        <p>Перевізників</p>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">10 000+</span>
+        <p>Маршрутів по Європі</p>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">1 млн+</span>
+        <p>Задоволених пасажирів</p>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">24/7</span>
+        <p>Підтримка клієнтів</p>
+    </div>
+</section>
+
+<!-- Секція популярних напрямків з фото-картками -->
+<section class="top-destinations container">
+    <h2>Популярні напрямки зі знижками</h2>
+    <div class="destinations-grid">
+        <div class="dest-card" style="background-image: url('img/berlin.jpg');">
+            <div class="dest-overlay">
+                <h3>Київ — Варшава</h3>
+                <span class="price-tag">від 950 грн</span>
+                <button class="btn-sm">Дивитись рейси</button>
+            </div>
+        </div>
+        <div class="dest-card" style="background-image: url('img/klaypeda-afiny.jpg');">
+            <div class="dest-overlay">
+                <h3>Львів — Краків</h3>
+                <span class="price-tag">від 600 грн</span>
+                <button class="btn-sm">Дивитись рейси</button>
+            </div>
+        </div>
+        <div class="dest-card" style="background-image: url('img/Варшава\ Краков.jpg');">
+            <div class="dest-overlay">
+                <h3>Одеса — Прага</h3>
+                <span class="price-tag">від 1800 грн</span>
+                <button class="btn-sm">Дивитись рейси</button>
+            </div>
+        </div>
+        <div class="dest-card" style="background-image: url('img/Київ-Варшава.jpeg');">
+            <div class="dest-overlay">
+                <h3>Київ — Берлін</h3>
+                <span class="price-tag">від 2200 грн</span>
+                <button class="btn-sm">Дивитись рейси</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Блок завантаження мобільного додатку -->
+<section class="app-promo">
+    <div class="container promo-flex">
+        <div class="promo-text">
+            <h2>Квитки завжди під рукою</h2>
+            <p>Завантажуйте додаток BusPortal та отримуйте знижку -10% на першу поїздку!</p>
+            <div class="app-buttons">
+                <img src="img/google play logo.png" alt="Google Play" height="45">
+                <img src="img/App-Store-Logo-2020.png" alt="App Store" height="45">
+            </div>
+        </div>
+        <div class="promo-image">
+            <!-- Символічне зображення телефону -->
+            <div class="phone-mockup">📱</div>
+        </div>
+    </div>
+</section>
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Про нас</h4>
+                <ul>
+                    <li><a href="#">Про компанію</a></li>
+                    <li><a href="#">Контакти</a></li>
+                    <li><a href="#">Партнерам</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Допомога</h4>
+                <ul>
+                    <li><a href="#">Як купити квиток</a></li>
+                    <li><a href="#">Повернення квитків</a></li>
+                    <li><a href="#">Питання та відповіді</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ми в соцмережах</h4>
+                <div class="social-links">
+                    <a href="#">FB</a> <a href="#">IG</a> <a href="#">TG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
