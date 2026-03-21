@@ -1,4 +1,4 @@
-/* Глобальні налаштування */
+
 :root {
     --main-color: #1a73e8;
     --accent-color: #ff9800;
@@ -27,7 +27,7 @@ body {
     align-items: center;
 }
 
-/* Top Bar */
+
 .top-bar {
     background: var(--dark-bg);
     color: #ccc;
@@ -38,7 +38,7 @@ body {
 .top-bar a { color: #fff; text-decoration: none; margin-left: 15px; }
 .btn-login { background: #444; padding: 4px 12px; border-radius: 4px; }
 
-/* Header */
+
 header {
     background: var(--white);
     padding: 20px 0;
@@ -51,7 +51,7 @@ header {
 nav ul { display: flex; gap: 25px; list-style: none; margin: 0; }
 nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 
-/* Hero & Search */
+
 .hero {
     background: linear-gradient(45deg, #1a73e8, #0d47a1);
     color: white;
@@ -87,7 +87,7 @@ nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 
 .btn-search:hover { background: #f57c00; transform: translateY(-2px); }
 
-/* Benefits */
+
 .benefits {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -105,16 +105,16 @@ nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 
 .benefit-card .icon { font-size: 40px; margin-bottom: 15px; }
 
-/* Grid Layout */
+
 .content-grid { display: grid; grid-template-columns: 280px 1fr; gap: 30px; margin-bottom: 60px; }
 
-/* Sidebar */
+
 .sidebar { background: white; padding: 20px; border-radius: 12px; height: fit-content; }
 .filter-box { margin-bottom: 25px; }
 .filter-box h4 { margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; }
 .filter-box label { display: block; margin: 10px 0; font-size: 14px; cursor: pointer; }
 
-/* Bus Card */
+
 .bus-card {
     background: white;
     border-radius: 12px;
@@ -132,7 +132,7 @@ nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 .duration-block { text-align: center; flex: 1; padding: 0 20px; }
 .line { height: 2px; background: #ddd; margin: 10px 0; position: relative; }
 .line::after { content: '🚌'; position: absolute; top: -10px; left: 45%; background: white; padding: 0 5px; }
-/* Статистика */
+
 .trust-stats {
     display: flex;
     justify-content: space-around;
@@ -153,7 +153,7 @@ nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 
 .stat-item p { color: #666; font-weight: 500; margin-top: 5px; }
 
-/* Картки напрямків */
+
 .top-destinations { margin: 60px auto; }
 .top-destinations h2 { margin-bottom: 30px; color: var(--dark-bg); }
 
@@ -232,7 +232,7 @@ nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 
 .btn-buy { background: var(--main-color); color: white; border: none; padding: 12px 30px; border-radius: 6px; cursor: pointer; font-weight: bold; }
 
-/* Footer */
+
 footer { background: var(--dark-bg); color: #fff; padding: 60px 0; }
 .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 .footer-col h4 { margin-bottom: 20px; color: var(--accent-color); }
@@ -241,7 +241,7 @@ footer { background: var(--dark-bg); color: #fff; padding: 60px 0; }
 .footer-col a { color: #aaa; text-decoration: none; transition: 0.3s; }
 .footer-col a:hover { color: #fff; }
 
-/* Responsive */
+
 @media (max-width: 900px) {
     .content-grid { grid-template-columns: 1fr; }
     .search-engine { flex-direction: column; }
