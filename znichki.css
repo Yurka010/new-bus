@@ -1,0 +1,124 @@
+.bus-deals-mini {
+    padding: 40px 20px;
+    background: #fdfdfd;
+    font-family: sans-serif;
+}
+
+.deals-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.deals-header {
+    margin-bottom: 25px;
+    border-left: 4px solid #ff4757;
+    padding-left: 15px;
+}
+
+.deals-header h2 {
+    margin: 0;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.deals-header p {
+    margin: 0;
+    color: #888;
+    font-size: 14px;
+}
+
+.deals-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.deal-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.deal-item:hover {
+    border-color: #ff4757;
+    transform: translateX(5px);
+}
+
+.deal-tag {
+    background: #ff4757;
+    color: #fff;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.deal-info {
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+.route {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.deal-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.deal-price {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.old {
+    display: block;
+    text-decoration: line-through;
+    color: #bbb;
+    font-size: 13px;
+}
+
+.new {
+    font-size: 18px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.deal-btn {
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.deal-btn:hover {
+    background: #ff4757;
+}
+
+/* Адаптація для мобілок */
+@media (max-width: 600px) {
+    .deal-item {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .deal-info {
+        width: 60%;
+    }
+    .deal-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

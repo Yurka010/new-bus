@@ -1,0 +1,134 @@
+/* Обнулення */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Контейнер розкладу */
+.schedule-container {
+    background: #fff;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Шапка */
+.schedule-header {
+    background: #1a73e8;
+    color: white;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.btn-back {
+    position: absolute;
+    left: 20px;
+    top: 35px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.btn-back:hover { opacity: 1; }
+
+.schedule-header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.schedule-header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Таблиця */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.bus-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+.bus-table th {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #5f6368;
+    border-bottom: 2px solid #eee;
+}
+
+.bus-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #f1f1f1;
+    color: #3c4043;
+}
+
+/* Стилі для окремих колонок */
+.time {
+    font-weight: bold;
+    color: #1a73e8;
+    font-size: 18px;
+}
+
+.route {
+    font-weight: 500;
+}
+
+.platform {
+    color: #70757a;
+}
+
+/* Статуси */
+.status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.expected { background: #e8f0fe; color: #1967d2; }
+.on-way { background: #e6f4ea; color: #1e8e3e; }
+.boarding { background: #fef7e0; color: #f9ab00; }
+.cancelled { background: #fce8e6; color: #d93025; }
+
+/* Виділення рядка при наведенні */
+.bus-table tr:hover {
+    background: #f1f8ff;
+}
+
+.highlight {
+    background: #fff9eb;
+}
+
+/* Мобільна адаптація */
+@media (max-width: 600px) {
+    body { padding: 10px; }
+    .schedule-header { padding: 20px; }
+    .btn-back { position: static; display: block; margin-bottom: 10px; }
+}

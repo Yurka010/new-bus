@@ -12,6 +12,76 @@
     <title>BusPortal — Квитки на автобус по Україні та Європі</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
+
+
+<div id="login-window" class="modal">
+    <div class="modal-content glass">
+        <a href="#" class="close-btn">&#10005;</a>
+        
+        <div class="modal-header">
+            <h2>Ласкаво просимо</h2>
+            <p>Увійдіть у свій профіль</p>
+        </div>
+
+        <form class="auth-form">
+            <div class="input-container">
+                <input type="email" placeholder=" " id="email" required>
+                <label for="email">Ваш Email</label>
+            </div>
+            
+            <div class="input-container">
+                <input type="password" placeholder=" " id="password" required>
+                <label for="password">Пароль</label>
+            </div>
+
+            <button type="submit" class="auth-btn gradient-btn">Продовжити</button>
+        </form>
+
+        <footer class="modal-footer">
+            <span>Немає акаунту?</span>
+            <a href="#reg-window" class="switch-link">Зареєструватися</a>
+        </footer>
+    </div>
+</div>
+
+<div id="reg-window" class="modal">
+    <div class="modal-content glass">
+        <a href="#" class="close-btn">&#10005;</a>
+        
+        <div class="modal-header">
+            <h2>Реєстрація</h2>
+            <p>Створіть свій особистий кабінет</p>
+        </div>
+
+        <form class="auth-form">
+            <div class="input-container">
+                <input type="text" placeholder=" " id="name" required>
+                <label for="name">Ваше ім'я</label>
+            </div>
+            
+            <div class="input-container">
+                <input type="email" placeholder=" " id="reg-email" required>
+                <label for="reg-email">Ваш Email</label>
+            </div>
+            
+            <div class="input-container">
+                <input type="password" placeholder=" " id="reg-password" required>
+                <label for="reg-password">Придумайте пароль</label>
+            </div>
+
+            <button type="submit" class="auth-btn blue-btn">Створити акаунт</button>
+        </form>
+
+        <footer class="modal-footer">
+            <span>Вже є акаунт?</span>
+            <a href="#login-window" class="switch-link">Увійти</a>
+        </footer>
+    </div>
+</div>
+
+
+
 <body>
 
     
@@ -20,7 +90,7 @@
             <div class="contacts">📞 0 800 500 700 | ✉️ support@busportal.ua</div>
             <div class="user-menu">
                 <a href="#">Мій квиток</a>
-                <a href="#" class="btn-login">Увійти</a>
+                <a href="#login-window" class="open-btn">Увійти</a>
             </div>
         </div>
     </div>
@@ -30,10 +100,14 @@
             <div class="logo">Bus<span>Portal</span></div>
             <nav>
                 <ul>
-                    <li><a href="#">Пошук</a></li>
-                    <li><a href="#">Розклад</a></li>
-                    <li><a href="#">Перевізники</a></li>
-                    <li><a href="#">Акції</a></li>
+                    <li><a href="https://city.dozor.tech/ua/uzhgorod/city">Пошук</a></li>
+                    <div class="navigation-block">
+    <a href="rozklad.html" class="main-button">
+         розклад
+    </a>
+</div>
+                    <li><a href="#dog">Перевізники</a></li>
+                    <li><a href="znichki.html">Акції</a></li>
                 </ul>
             </nav>
         </div>
@@ -63,7 +137,7 @@
         </section>
 
         
-        <section class="benefits container">
+        <section id="dog" class="benefits container">
             <div class="benefit-card">
                 <div class="icon">🛡️</div>
                 <h3>Безпечна оплата</h3>
@@ -98,7 +172,7 @@
                     <label><input type="checkbox"> Вечір (18:00 - 00:00)</label>
                 </div>
             </aside>
-
+            
             <section class="results">
                 <!-- Картка рейсу -->
                 <div class="bus-card">
@@ -149,9 +223,6 @@
         <p>Підтримка клієнтів</p>
     </div>
 </section>
-<button onclick="window.location.href='page.html'">
-    Натисни
-</button>
 
 <section class="top-destinations container">
     <h2>Популярні напрямки зі знижками</h2>
@@ -160,28 +231,28 @@
             <div class="dest-overlay">
                 <h3>Київ — Варшава</h3>
                 <span class="price-tag">від 950 грн</span>
-                <button class="btn-sm">Дивитись рейси</button>
+                <a href="znichki.html" class="btn-sm"> Дивитись рейси</a>
             </div>
         </div>
         <div class="dest-card" style="background-image: url('img/klaypeda-afiny.jpg');">
             <div class="dest-overlay">
                 <h3>Львів — Краків</h3>
                 <span class="price-tag">від 600 грн</span>
-                <button class="btn-sm">Дивитись рейси</button>
+                <a href="znichki.html" class="btn-sm"> Дивитись рейси</a>
             </div>
         </div>
         <div class="dest-card" style="background-image: url('img/Варшава\ Краков.jpg');">
             <div class="dest-overlay">
                 <h3>Одеса — Прага</h3>
                 <span class="price-tag">від 1800 грн</span>
-                <button class="btn-sm">Дивитись рейси</button>
+                <a href="znichki.html" class="btn-sm"> Дивитись рейси</a>
             </div>
         </div>
         <div class="dest-card" style="background-image: url('img/Київ-Варшава.jpeg');">
             <div class="dest-overlay">
                 <h3>Київ — Берлін</h3>
                 <span class="price-tag">від 2200 грн</span>
-                <button class="btn-sm">Дивитись рейси</button>
+                <a href="znichki.html" class="btn-sm"> Дивитись рейси</a>
             </div>
         </div>
     </div>
@@ -230,6 +301,6 @@
             </div>
         </div>
     </footer>
-    <li><a href="page.html">нажми</a></li>
+    
 </body>
 </html>
