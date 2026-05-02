@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #ff7e5f);
+  color: #333;
+}
+
+/* HEADER */
+.header {
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* SEARCH BOX */
+.search-box {
+  background: white;
+  margin: 30px auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.search-box h2 {
+  margin-bottom: 15px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputs input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+
+.inputs input:focus {
+  border-color: orange;
+  outline: none;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 25px;
+  background: orange;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: darkorange;
+  transform: scale(1.05);
+}
+
+/* RESULTS */
+.results {
+  width: 90%;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.results h2 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.route {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.info {
+  color: gray;
+}
+
+/* BUTTON BUY */
+.card button {
+  padding: 10px 15px;
+  background: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: #4a0ea5;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  margin-top: 30px;
+}
