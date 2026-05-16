@@ -232,6 +232,7 @@ header {
     background: var(--white);
     padding: 20px 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    
 }
 
 .logo { font-size: 28px; font-weight: 900; color: var(--main-color); }
@@ -281,18 +282,26 @@ nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
 
 .btn-search {
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 0 40px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
+    background-color: #ff9800; /* Ваш помаранчевий колір */
+    color: white;             /* Білий колір тексту */
+    padding: 12px 24px;       /* Відступи всередині (щоб кнопка не була "худою") */
+    border: none;             /* Прибираємо чорну рамку */
+    border-radius: 8px;       /* Заокруглюємо кути */
+    font-size: 20px;          /* Розмір тексту */
+    font-weight: bold;        /* Жирний шрифт */
+    cursor: pointer;          /* Щоб при наведенні з'являлася "рука" */
+    transition: 0.3s;         /* Плавна зміна кольору */
+    margin-top: 0px;
+     border-top: 0 !important; /* Центрування тексту всередині кнопки */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.btn-search:hover { background: #f57c00; transform: translateY(-2px); }
+.btn-search:hover {
+   background-color: #e68a00; /* Темніший колір при наведенні */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
 
 
 .benefits {

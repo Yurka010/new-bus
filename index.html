@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="reisu.css">
 </head>
 <head>
     <meta charset="UTF-8">
@@ -121,17 +122,22 @@
                 <form class="search-engine">
                     <div class="input-group">
                         <label>Звідки</label>
-                        <input type="text" placeholder="Місто виїзду">
+                        <input id="from" type="text" placeholder="Місто виїзду">
                     </div>
                     <div class="input-group">
                         <label>Куди</label>
-                        <input type="text" placeholder="Місто прибуття">
+                        <input id="to" type="text" placeholder="Місто прибуття">
                     </div>
                     <div class="input-group">
                         <label>Дата</label>
-                        <input type="date">
+                        <input id="date" type="date">
                     </div>
-                    <a href="reisu.html" class="btn-search">Знайти рейси</button></a>
+                    <div class="bus-card"
+                    data-from="Київ"
+                    data-to="Варшава"
+                    data-date="2026-05-20">
+                    <button type="button" onclick="findTrips()" class="btn-search">Знайти рейси</button>
+                    <div class="results" id="results"></div>
                 </form>
             </div>
         </section>
@@ -205,6 +211,55 @@
             </section>
         </div>
     </main>
+    <section class="reviews-section">
+    <div class="reviews-header">
+        <h2>Відгуки</h2>
+        <div class="reviews-buttons">
+            <button class="btn-add-review">Додати відгук</button>
+            <button class="btn-all-reviews">Всі відгуки</button>
+        </div>
+    </div>
+
+    <div class="slider-container">
+        <button class="slider-arrow prev-btn">&#10094;</button>
+
+        <div class="reviews-track">
+            
+            <div class="review-card">
+                <h3>Надія</h3>
+                <p class="route">Нюрнберг — Львів</p>
+                <p class="review-text">Доброго дня, дуже вам вдячна за переїзд в Україну, рідне місто! Хороша повага до людей, добрі хороші у вас водії !!!</p>
+                <div class="card-footer">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <span class="brand-name">BusPortal</span>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h3>Зоряна</h3>
+                <p class="route">Тернопіль — Неаполь</p>
+                <p class="review-text">Дякую за швидке бронювання. Самостійно знайшла рейс, забронювала, за 10 хвилин мені зателефонували і підтвердили.</p>
+                <div class="card-footer">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <span class="brand-name">BusPortal</span>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <h3>Анастасія</h3>
+                <p class="route">Київ — Берлін</p>
+                <p class="review-text">Все було дуже добре, водії великі молодці, автобус дуже комфортабельний, багаж складали обережно, була питна вода.</p>
+                <div class="card-footer">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <span class="brand-name">BusPortal</span>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="slider-arrow next-btn">&#10095;</button>
+    </div>
+</section>
 <section class="trust-stats container">
     <div class="stat-item">
         <span class="stat-number">500+</span>
@@ -301,6 +356,6 @@
             </div>
         </div>
     </footer>
-    
+    <script src="script.js"></script>
 </body>
 </html>
