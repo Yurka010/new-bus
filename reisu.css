@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 body{
     margin:0;
     font-family:Arial;
@@ -188,29 +188,57 @@ body{
     right: -25px;
 }
 
-/* Адаптивність для мобільних пристроїв */
-@media (max-width: 768px) {
-    .review-card {
-        min-width: calc(100% - 10px); /* На телефонах показуємо 1 картку */
-    }
-    .slider-arrow {
-        display: none; /* Ховаємо стрілки на мобільних */
-    }
-    .reviews-track {
-        overflow-x: auto; /* Дозволяємо гортати пальцем */
-    }
-=======
-body { background: #f4f7f6; font-family: sans-serif; padding: 20px; }
-.container { max-width: 700px; margin: 0 auto; }
-.bus-card { 
-    background: white; padding: 20px; margin-bottom: 10px; 
-    border-radius: 12px; display: flex; justify-content: space-between;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #0056b3;
+/* Контейнер для правильного позиціонування */
+.search-container {
+    position: relative;
 }
-.info strong { font-size: 20px; color: #0056b3; margin-right: 10px; }
-.price { font-weight: bold; font-size: 18px; }
-button { 
-    background: #28a745; color: white; border: none; 
-    padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 10px;
->>>>>>> fbe2487da9531b48a4dce5dfd3e815f7dfbb9cf6
+
+/* Стилі для самого випадаючого вікна */
+.custom-dropdown {
+    display: none; /* Спочатку воно приховане */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-width: 350px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    padding: 15px;
+    margin-top: 5px;
+}
+
+/* Коли додаємо цей клас через JS — меню відкривається */
+.custom-dropdown.active {
+    display: block;
+}
+
+.dropdown-section h4 {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* Елементи списку (міста) */
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+    background: #f4f4f4;
+}
+
+.city-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.country-name {
+    font-size: 12px;
+    color: #888;
+    margin-left: 5px;
 }

@@ -32,3 +32,28 @@ if (track && prevBtn && nextBtn) {
         });
     });
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const fromInput = document.getElementById("from");
+    const dropdownFrom = document.getElementById("dropdown-from");
+
+    // 1. Показуємо меню, коли користувач клікає на інпут "Звідки"
+    fromInput.addEventListener("focus", () => {
+        dropdownFrom.classList.add("active");
+    });
+
+    // 2. Закриваємо меню, якщо клікнули в будь-якому іншому місці екрана
+    document.addEventListener("click", (e) => {
+        if (!fromInput.contains(e.target) && !dropdownFrom.contains(e.target)) {
+            dropdownFrom.classList.remove("active");
+        }
+    });
+
+    // 3. Коли клікаємо на місто з меню — підставляємо його в інпут
+    const items = dropdownFrom.querySelectorAll(".dropdown-item");
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+            fromInput.value = item.getAttribute("data-city");
+            dropdownFrom.classList.remove("active"); // ховаємо меню
+        });
+    });
+});
