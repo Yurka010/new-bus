@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     margin:0;
     font-family:Arial;
@@ -198,4 +199,18 @@ body{
     .reviews-track {
         overflow-x: auto; /* Дозволяємо гортати пальцем */
     }
+=======
+body { background: #f4f7f6; font-family: sans-serif; padding: 20px; }
+.container { max-width: 700px; margin: 0 auto; }
+.bus-card { 
+    background: white; padding: 20px; margin-bottom: 10px; 
+    border-radius: 12px; display: flex; justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #0056b3;
+}
+.info strong { font-size: 20px; color: #0056b3; margin-right: 10px; }
+.price { font-weight: bold; font-size: 18px; }
+button { 
+    background: #28a745; color: white; border: none; 
+    padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 10px;
+>>>>>>> fbe2487da9531b48a4dce5dfd3e815f7dfbb9cf6
 }
