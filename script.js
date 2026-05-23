@@ -1,59 +1,136 @@
-// 1. Знаходимо елементи слайдера на сторінці
-const track = document.querySelector('.reviews-track');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
+// Твій код для каруселі відгуків (рядки 1-34) залишається без змін!
 
-// Перевіряємо, чи всі елементи знайшлися, щоб не було помилок у консолі
-if (track && prevBtn && nextBtn) {
-    
-    // Функція, яка автоматично рахує, на скільки пікселів треба гортати
-    const getScrollStep = () => {
-        const card = document.querySelector('.review-card');
-        if (card) {
-            // Беремо ширину картки + додаємо 20 пікселів (це відступ gap між ними)
-            return card.offsetWidth + 20; 
-        }
-        return 350; // значення за замовчуванням, якщо картку не знайдено
-    };
-
-    // Подія для кнопки "Вправо" (гортаємо вперед)
-    nextBtn.addEventListener('click', () => {
-        track.scrollBy({ 
-            left: getScrollStep(), 
-            behavior: 'smooth' // робить прокрутку плавною
-        });
-    });
-
-    // Подія для кнопки "Вліво" (гортаємо назад)
-    prevBtn.addEventListener('click', () => {
-        track.scrollBy({ 
-            left: -getScrollStep(), 
-            behavior: 'smooth' 
-        });
-    });
-}
 document.addEventListener("DOMContentLoaded", () => {
-    const fromInput = document.getElementById("from");
-    const dropdownFrom = document.getElementById("dropdown-from");
+  
+  // 1. ЕЛЕМЕНТИ ДЛЯ ПЕРШОГО ПОЛЯ (Звідки)
+  const fromInput = document.getElementById("from");
+  const dropdownFrom = document.getElementById("dropdown-from");
 
-    // 1. Показуємо меню, коли користувач клікає на інпут "Звідки"
-    fromInput.addEventListener("focus", () => {
-        dropdownFrom.classList.add("active");
+  fromInput.addEventListener("focus", () => {
+    dropdownFrom.classList.add("active");
+  });
+
+  const fromItems = dropdownFrom.querySelectorAll(".dropdown-item");
+  fromItems.forEach(item => {
+    item.addEventListener("click", () => {
+      fromInput.value = item.getAttribute("data-city");
+      dropdownFrom.classList.remove("active");
     });
+  });
 
-    // 2. Закриваємо меню, якщо клікнули в будь-якому іншому місці екрана
-    document.addEventListener("click", (e) => {
-        if (!fromInput.contains(e.target) && !dropdownFrom.contains(e.target)) {
-            dropdownFrom.classList.remove("active");
-        }
+
+  // 2. ЕЛЕМЕНТИ ДЛЯ ДРУГОГО ПОЛЯ (Куди)
+  const toInput = document.getElementById("to");
+  const dropdownTo = document.getElementById("dropdown-to"); // Тут ми шукаємо виправлений в HTML id
+
+  toInput.addEventListener("focus", () => {
+    dropdownTo.classList.add("active");
+  });
+
+  const toItems = dropdownTo.querySelectorAll(".dropdown-item");
+  toItems.forEach(item => {
+    item.addEventListener("click", () => {
+      toInput.value = item.getAttribute("data-city");
+      dropdownTo.classList.remove("active");
     });
+  });
 
-    // 3. Коли клікаємо на місто з меню — підставляємо його в інпут
-    const items = dropdownFrom.querySelectorAll(".dropdown-item");
-    items.forEach(item => {
-        item.addEventListener("click", () => {
-            fromInput.value = item.getAttribute("data-city");
-            dropdownFrom.classList.remove("active"); // ховаємо меню
+
+  // 3. ЗАГАЛЬНЕ ЗАКРИТТЯ ОБВОХ МЕНЮ ПРИ КЛІКУ ПО ЕКРАНУ
+  document.addEventListener("click", (e) => {
+    // Закриваємо перше, якщо клікнули повз нього
+    if (!fromInput.contains(e.target) && !dropdownFrom.contains(e.target)) {
+      dropdownFrom.classList.remove("active");
+    }
+    // Закриваємо друге, якщо клікнули повз нього
+    if (!toInput.contains(e.target) && !dropdownTo.contains(e.target)) {
+      dropdownTo.classList.remove("active");
+    }
+  });
+
+}); 
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Знаходимо вікно реєстрації та його елементи за вашими ID і класами
+    const regWindow = document.getElementById('reg-window');
+    
+    if (regWindow) {
+        const regForm = regWindow.querySelector('.auth-form');
+        const emailInput = document.getElementById('RegEmail');
+        const passwordInput = document.getElementById('reg-password');
+
+        // 2. Вішаємо обробник на відправку форми реєстрації
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Зупиняємо перезавантаження сторінки
+
+            const emailValue = emailInput.value.trim();
+            const passwordValue = passwordInput.value.trim();
+
+            // 3. Створюємо об'єкт нового користувача
+            const user = {
+                email: emailValue,
+                password: passwordValue
+            };
+
+            // 4. Записуємо дані в локальну пам'ять браузера (localStorage)
+            localStorage.setItem('registeredUser', JSON.stringify(user));
+
+            // 5. Виводимо повідомлення про успіх
+            alert('Реєстрація успішна! Тепер ви можете увійти.');
+
+            // Очищаємо поля після успішної реєстрації
+            regForm.reset();
+
+            // Автоматично перенаправляємо користувача на вікно входу
+            window.location.hash = '#login-window';
         });
-    });
+    }
+});
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Знаходимо вікно входу (за посиланням #login-window або класом модалки)
+    // Шукаємо кнопку "Продовжити" всередині форми входу
+    const loginBtn = document.querySelector('.auth-form button, #login-window button, .modal button');
+
+    if (loginBtn) {
+        // Знаходимо інпути пошти та пароля відносно цієї кнопки
+        const loginForm = loginBtn.closest('form') || loginBtn.parentElement;
+        const loginEmailInput = loginForm.querySelector('input[type="email"]') || loginForm.querySelectorAll('input')[0];
+        const loginPasswordInput = loginForm.querySelector('input[type="password"]') || loginForm.querySelectorAll('input')[1];
+
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Зупиняємо оновлення сторінки
+
+            const emailValue = loginEmailInput.value.trim();
+            const passwordValue = loginPasswordInput.value.trim();
+
+            // 2. Дістаємо з пам'яті браузера користувача, якого ми зареєстрували раніше
+            const savedUser = JSON.parse(localStorage.getItem('registeredUser'));
+
+            // 3. Перевіряємо, чи взагалі хтось реєструвався
+            if (!savedUser) {
+                alert('Користувача не знайдено! Спочатку пройдіть реєстрацію.');
+                return;
+            }
+
+            // 4. Перевіряємо збіг пошти та пароля
+            if (emailValue === savedUser.email && passwordValue === savedUser.password) {
+                alert('Вхід успішний! Ласкаво просимо.');
+                
+                // Закриваємо модальне вікно (прибираємо hash з URL)
+                window.location.hash = ''; 
+                
+                // Очищаємо поля форми
+                loginForm.reset();
+
+                // (Опціонально) Тут можна змінити текст кнопки "Увійти" в шапці сайту на "Кабінет" або приховати її
+                const topBarLoginBtn = document.querySelector('.open-btn, [href="#login-window"]');
+                if (topBarLoginBtn) {
+                    topBarLoginBtn.textContent = 'Мій профіль';
+                    topBarLoginBtn.href = '#'; // відключаємо відкриття вікна знову
+                }
+            } else {
+                // Якщо дані не збігаються
+                alert('Неправильний Email або Пароль! Спробуйте ще раз.');
+            }
+        });
+    }
 });

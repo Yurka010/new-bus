@@ -62,7 +62,7 @@
             </div>
             
             <div class="input-container">
-                <input type="email" placeholder=" " id="reg-email" required>
+                <input type="email" placeholder=" " id="RegEmail" required>
                 <label for="reg-email">Ваш Email</label>
             </div>
             
@@ -122,30 +122,47 @@
                 <form class="search-engine">
            <form class="search-engine">
     <div class="input-group">
-        <label>Звідки</label>
-        <input id="from" type="text" placeholder="Місто виїзду" autocomplete="off">
-        
-        <div id="dropdown-from" class="custom-dropdown">
-            <div class="dropdown-title">Популярні міста</div>
-            <div class="dropdown-item" data-city="Київ">
-                <span class="city">Київ</span><span class="country">Україна</span>
-            </div>
-            <div class="dropdown-item" data-city="Львів">
-                <span class="city">Львів</span><span class="country">Україна</span>
-            </div>
-            <div class="dropdown-item" data-city="Одеса">
-                <span class="city">Одеса</span><span class="country">Україна</span>
-            </div>
-            <div class="dropdown-item" data-city="Ужгород">
-                <span class="city">Ужгород</span><span class="country">Україна</span>
-            </div>
+    <label>Звідки</label>
+    <input id="from" type="text" placeholder="Місто виїзду" autocomplete="off">
+
+    <div id="dropdown-from" class="custom-dropdown">
+        <div class="dropdown-title">Популярні міста</div>
+        <div class="dropdown-item" data-city="Київ">
+            <span class="city">Київ</span> <span class="country">Україна</span>
+        </div>
+        <div class="dropdown-item" data-city="Львів">
+            <span class="city">Львів</span> <span class="country">Україна</span>
+        </div>
+        <div class="dropdown-item" data-city="Одеса">
+            <span class="city">Одеса</span> <span class="country">Україна</span>
+        </div>
+        <div class="dropdown-item" data-city="Ужгород">
+            <span class="city">Ужгород</span> <span class="country">Україна</span>
         </div>
     </div>
+</div> 
 
     <div class="input-group">
         <label>Куди</label>
         <input id="to" type="text" placeholder="Місто прибуття" autocomplete="off">
+
+    <div id="dropdown-to" class="custom-dropdown">
+        <div class="dropdown-title">Популярні міста</div>
+        <div class="dropdown-item" data-city="Київ">
+            <span class="city">Київ</span> <span class="country">Україна</span>
+        </div>
+        <div class="dropdown-item" data-city="Львів">
+            <span class="city">Львів</span> <span class="country">Україна</span>
+        </div>
+        <div class="dropdown-item" data-city="Одеса">
+            <span class="city">Одеса</span> <span class="country">Україна</span>
+        </div>
+        <div class="dropdown-item" data-city="Ужгород">
+            <span class="city">Ужгород</span> <span class="country">Україна</span>
+        </div>
     </div>
+</div> 
+
 
     <div class="input-group">
         <label>Дата</label>
@@ -156,7 +173,7 @@
 </form>
 
 <div class="results" id="results"></div>
-                    <button type="button" onclick="findTrips()" class="btn-search">Знайти рейси</button>
+                    
 
 </form> <div class="results" id="results"></div>
             </div>
