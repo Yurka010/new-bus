@@ -285,8 +285,58 @@ body {
     margin: 0;
     color: var(--text-color);
     background-color: #eef2f5;
+     
 }
 
+
+/* Обов'язково додаємо це до твого існуючого .slider */
+
+.slider {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Рівняє контейнер чітко по центру екрану */
+  align-items: center;
+  /* Прибираємо gap, бо кнопок-стрілок більше немає і відступ не потрібен */
+}
+
+.slide-container {
+  position: relative;     /* ОБОВ'ЯЗКОВО! Прив'язує невидимі зони до меж фото */
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 auto;         /* Додатковий захист для центрування */
+}
+
+#slide {
+  width: 500px;
+  height: 100%;
+  display: block;         /* Прибирає дефолтні дрібні відступи інлайнових картинок */
+  transition: opacity 0.3s ease;
+}
+
+/* Налаштування клік-зон */
+.click-zone {
+  position: absolute;     /* ОБОВ'ЯЗКОВО! Виводить зони з загального потоку, щоб вони не рухали фото */
+  top: 0;
+  bottom: 0;
+  width: 50%;             /* Половина від ширини фото (250px) */
+  z-index: 10;            /* Ставить поверх фото */
+  cursor: pointer;
+}
+
+.left-zone {
+  left: 0;                /* Ліва половина картинки */
+}
+
+.right-zone {
+  right: 0;               /* Права половина картинки */
+}
+
+button{
+    padding:15px 20px;
+    font-size:24px;
+    cursor:pointer;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;

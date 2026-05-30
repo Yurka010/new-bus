@@ -134,3 +134,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+const images = [
+  "img/depositphotos_243568424-stock-photo-zurich-cityscape-image-zurich-switzerland.jpg",
+  "img/d70a4911f04a3f917c0d985e4d2e08f0.jpeg",
+  "img/01002gdg-c5c1.jpeg"
+];
+
+let current = 0;
+const slide = document.getElementById("slide");
+let isTransitioning = false; // Захист від швидких кліків
+
+function changeSlide(direction) {
+  if (isTransitioning) return; // Якщо анімація ще йде — ігноруємо клік
+  isTransitioning = true;
+
+  // 1. Плавно ховаємо поточну картинку
+  slide.style.opacity = "0";
+
+  // 2. Чекаємо 300мс (поки згасне) і змінюємо індекс
+  setTimeout(() => {
+    if (direction === "next") {
+      current++;
+      if (current >= images.length) current = 0;
+    } else if (direction === "prev") {
+      current--;
+      if (current < 0) current = images.length - 1;
+    }
+
+    // Змінюємо саму картинку
+    slide.src = images[current];
+    
+    // 3. Плавно показуємо нову
+    slide.style.opacity = "1";
+
+    // Дозволяємо наступний клік після завершення появи (ще 300мс)
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 300);
+  }, 300);
+}
+
+// Ці дві функції викликаються при кліках на ліву/праву частину
+function nextSlide() {
+  changeSlide("next");
+}
+
+function prevSlide() {
+  changeSlide("prev");
+}
