@@ -31,12 +31,59 @@
     /* М'яка поява */
     animation: fadeInModal 0.4s ease;
 }
+/* Стилі для круглої аватарки, яка створиться через JS */
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #ff9800; /* Помаранчевий колір */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin-left: 10px; /* Відступ від кнопки */
+  display: inline-flex; /* Щоб ставала в один рядок з текстом */
+}
+/* Повне очищення фону для нижньої частини модального вікна */
+#login-window footer.modal-footer, 
+#reg-window footer.modal-footer,
+.modal-footer {
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  margin-top: 30px !important;
+  padding: 0 !important;
+  padding-bottom: 10px;
+  text-align: center;
+}
 
+/* Окремо робимо текст всередині футера світлим або темним, залежно від дизайну */
+.modal-footer span {
+  color: #333333 !important; /* Якщо фон модалки світлий, робимо текст темним */
+  font-weight: 500;
+}
+
+.modal-footer .switch-link {
+  color: #007bff !important; /* Робимо посилання яскраво-синім */
+  background: transparent !important;
+}
+/* Приховування кнопки входу */
+.hidden {
+  display: none !important;
+}
 @keyframes fadeInModal {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
+/* Стилі для хрестика закриття */
 .modal:target {
     display: flex;
 }
@@ -272,7 +319,7 @@
     top: 20px;
     right: 20px;
     font-size: 18px;
-    color: #aaa;
+    color: #0051ff;
     text-decoration: none;
     transition: 0.3s;
 }
@@ -595,4 +642,17 @@ footer { background: var(--dark-bg); color: #fff; padding: 60px 0; }
     .content-grid { grid-template-columns: 1fr; }
     .search-engine { flex-direction: column; }
     .benefits { grid-template-columns: 1fr; }
+}
+/* Клас помилки для інпутів */
+.input-container input.error {
+  border: 2px solid #ff4d4d !important; /* Робимо рамку червоною */
+  background-color: #fff5f5;           /* Додаємо легкий червоний фон */
+  animation: shake 0.4s ease-in-out;    /* Запускаємо тряску на 0.4 секунди */
+}
+
+/* Опис рухів анімації струшування */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
 }

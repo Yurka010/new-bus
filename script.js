@@ -111,26 +111,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // 4. Перевіряємо збіг пошти та пароля
-            if (emailValue === savedUser.email && passwordValue === savedUser.password) {
-                alert('Вхід успішний! Ласкаво просимо.');
-                
-                // Закриваємо модальне вікно (прибираємо hash з URL)
-                window.location.hash = ''; 
-                
-                // Очищаємо поля форми
-                loginForm.reset();
-
-                // (Опціонально) Тут можна змінити текст кнопки "Увійти" в шапці сайту на "Кабінет" або приховати її
-                const topBarLoginBtn = document.querySelector('.open-btn, [href="#login-window"]');
-                if (topBarLoginBtn) {
-                    topBarLoginBtn.textContent = 'Мій профіль';
-                    topBarLoginBtn.href = '#'; // відключаємо відкриття вікна знову
-                }
-            } else {
-                // Якщо дані не збігаються
-                alert('Неправильний Email або Пароль! Спробуйте ще раз.');
-            }
+          // 4. Перевіряємо збіг пошти та пароля
+  if (emailValue === savedUser.email && passwordValue === savedUser.password) {
+    alert('Вхід успішний! Ласкаво просимо.');
+    
+    // Закриваємо модальне вікно (прибираємо hash з URL)
+    window.location.hash = '';
+    
+    // Очищаємо поля форми
+    loginForm.reset();
+    
+    // Твій код для зміни тексту кнопки в шапці (якщо є)
+    const topBarLoginBtn = document.querySelector('.open-btn, [href="#login-window"]');
+    if (topBarLoginBtn) {
+      topBarLoginBtn.textContent = 'Мій профіль';
+      topBarLoginBtn.href = '#';
+    }
+  } else {
+    // ЯКЩО ДАНІ НЕ ЗБІГАЮТЬСЯ — СТРУШУЄМО ПОЛЯ
+    triggerInputError(loginEmailInput);
+    triggerInputError(loginPasswordInput);
+  }
         });
     }
 });
@@ -182,4 +183,17 @@ function nextSlide() {
 
 function prevSlide() {
   changeSlide("prev");
+}
+// Функція для активації ефекту помилки
+function triggerInputError(element) {
+  if (!element) return;
+  
+  // Додаємо клас помилки (інпут почне трястись і стане червоним)
+  element.classList.add('error');
+  
+  // Через 400 мілісекунд (коли анімація закінчиться) прибираємо клас, 
+  // щоб його можна було ввімкнути знову при наступному кліку
+  setTimeout(() => {
+    element.classList.remove('error');
+  }, 400);
 }
