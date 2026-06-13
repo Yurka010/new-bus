@@ -7,22 +7,22 @@
     --text-color: #3c4043;
     --white: #ffffff;
 }
-/* Обнулення для тестування (опціонально) */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; /* Сучасний шрифт, підключи його через Google Fonts */
+    font-family: 'Poppins', sans-serif;
 }
 
-/* ЗАГАЛЬНІ СТИЛІ МОДАЛЬНОГО ВІКНА */
+
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Тонке затемнення замість повністю чорного */
+  
     background: rgba(0, 0, 0, 0.5); 
     display: none;
     justify-content: center;
@@ -31,11 +31,11 @@
     /* М'яка поява */
     animation: fadeInModal 0.4s ease;
 }
-/* Стилі для круглої аватарки, яка створиться через JS */
+
 .user-avatar {
   width: 40px;
   height: 40px;
-  background-color: #ff9800; /* Помаранчевий колір */
+  background-color: #ff9800;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -46,10 +46,10 @@
   text-transform: uppercase;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  margin-left: 10px; /* Відступ від кнопки */
-  display: inline-flex; /* Щоб ставала в один рядок з текстом */
+  margin-left: 10px; 
+  display: inline-flex; 
 }
-/* Повне очищення фону для нижньої частини модального вікна */
+
 #login-window footer.modal-footer, 
 #reg-window footer.modal-footer,
 .modal-footer {
@@ -65,17 +65,17 @@
   text-align: center;
 }
 
-/* Окремо робимо текст всередині футера світлим або темним, залежно від дизайну */
+
 .modal-footer span {
-  color: #333333 !important; /* Якщо фон модалки світлий, робимо текст темним */
+  color: #333333 !important; 
   font-weight: 500;
 }
 
 .modal-footer .switch-link {
-  color: #007bff !important; /* Робимо посилання яскраво-синім */
+  color: #007bff !important; 
   background: transparent !important;
 }
-/* Приховування кнопки входу */
+
 .hidden {
   display: none !important;
 }
@@ -83,27 +83,27 @@
     from { opacity: 0; }
     to { opacity: 1; }
 }
-/* Стилі для хрестика закриття */
+
 .modal:target {
     display: flex;
 }
 
-/* КОНТЕНТ ВІКНА (Матове скло / Glassmorphism) */
+
 .glass {
-    background: rgba(255, 255, 255, 0.7); /* Напівпрозорий білий */
-    backdrop-filter: blur(15px); /* Ефект розмиття фону */
+    background: rgba(255, 255, 255, 0.7); 
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.466); /* Тонка рамка */
+    border: 1px solid rgba(255, 255, 255, 0.466); 
 }
 
 .modal-content {
     padding: 40px;
-    border-radius: 25px; /* Більше закруглення */
+    border-radius: 25px; 
     width: 100%;
     max-width: 420px;
     position: relative;
     box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-    /* Анімація випливання */
+   
     animation: slideUpModal 0.5s ease;
 }
 
@@ -112,7 +112,7 @@
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* ШАПКА ВІКНА */
+
 .modal-header {
     text-align: center;
     margin-bottom: 30px;
@@ -133,54 +133,53 @@
   position: relative; 
 }
 
-/* Налаштовуємо саме випадаюче вікно */
+
 .custom-dropdown {
-  position: absolute;   /* Абсолютне позиціонування */
-  top: 100%;            /* Саджаємо рівно під інпут */
-  left: 0;              /* Вирівнюємо по лівому краю */
-  width: 100%;          /* Ширина меню буде точно такою ж, як ширина поля інпута */
-  z-index: 999;         /* Щоб меню виринало ПОВЕРХ карток із перевагами (Безпечна оплата тощо) */
-  display: none;        /* Спочатку воно сховане */
-  
-  /* Додатково: щоб воно не зливалося, додамо йому білий фон та тінь, як у твоїх модалок */
+  position: absolute;   
+  top: 100%;          
+  left: 0;            
+  width: 100%;        
+  z-index: 999;         
+  display: none;      
+
   background: #ffffff;
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  margin-top: 5px;      /* Маленький красивий відступ від інпута */
+  margin-top: 5px;   
 }
 
-/* Коли в JS додається клас active — показуємо меню */
+
 .custom-dropdown.active {
-  display: block;       /* Або flex, якщо всередині елементи налаштовані через флекси */
+  display: block;     
 }
-/* Робимо заголовок меню "Популярні міста" темним */
+
 #dropdown-from .dropdown-title {
-  color: #3c4043; /* Темно-сірий колір, який ти використовуєш */
-  padding: 10px 15px; /* Додамо відступи для краси */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Тонка лінія знизу */
+  color: #3c4043; 
+  padding: 10px 15px; 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin: 0;
 }
 
-/* Налаштовуємо стилі для самих елементів списку (міста) */
+
 #dropdown-from .dropdown-item {
-  color: #1a73e8; /* Синій колір для тексту міст, щоб було видно, що це посилання */
-  padding: 12px 15px; /* Відступи для елемента */
-  cursor: pointer; /* Показуємо курсор-руку при наведенні */
-  display: block; /* Робимо елемент блочним */
-  transition: background-color 0.2s; /* Плавна зміна фону при наведенні */
+  color: #1a73e8;
+  padding: 12px 15px;
+  cursor: pointer; 
+  display: block; 
+  transition: background-color 0.2s; 
 }
 
-/* Робимо колір країни (Україна) трохи світлішим, щоб не так впадав у вічі */
+
 #dropdown-from .dropdown-item .country {
-  color: #70757a; /* Світло-сірий */
-  font-size: 14px; /* Трохи менший шрифт */
-  margin-left: 5px; /* Відступ від назви міста */
+  color: #70757a; 
+  font-size: 14px; 
+  margin-left: 5px; 
 }
 
-/* Додаємо ефект наведення (hover) на елемент списку */
+
 #dropdown-from .dropdown-item:hover {
-  background-color: #f1f3f4; /* Дуже світло-сірий фон при наведенні */
+  background-color: #f1f3f4;
 }
 #dropdown-from .dropdown-title, 
 #dropdown-to .dropdown-title {
@@ -190,7 +189,7 @@
   margin: 0;
 }
 
-/* Робимо міста синіми для обох меню */
+
 #dropdown-from .dropdown-item, 
 #dropdown-to .dropdown-item {
   color: #1a73e8;
@@ -200,7 +199,7 @@
   transition: background-color 0.2s;
 }
 
-/* Країна світліша для обох меню */
+
 #dropdown-from .dropdown-item .country, 
 #dropdown-to .dropdown-item .country {
   color: #70757a;
@@ -208,12 +207,12 @@
   margin-left: 5px;
 }
 
-/* Ефект наведення для обох меню */
+
 #dropdown-from .dropdown-item:hover, 
 #dropdown-to .dropdown-item:hover {
   background-color: #f1f3f4;
 }
-/* СУЧАСНІ ПОЛЯ ВВОДУ З ПЛАВАЮЧИМ ЛЕЙБЛОМ */
+
 .input-container {
     position: relative;
     margin-bottom: 20px;
@@ -222,22 +221,22 @@
 .input-container input {
     width: 100%;
     padding: 15px 20px;
-    border: 2px solid rgba(0,0,0,0.08); /* Дуже тонка рамка */
+    border: 2px solid rgba(0,0,0,0.08); 
     border-radius: 12px;
     font-size: 16px;
-    background: transparent; /* Обов'язково прозорий */
+    background: transparent; 
     color: #1a1a1a;
     outline: none;
     transition: all 0.3s ease;
 }
 
-/* Коли поле в фокусі, рамка стає кольоровою */
+
 .input-container input:focus {
-    border-color: #fbbf24; /* Помаранчевий як у тебе */
+    border-color: #fbbf24; 
     background: rgba(255,255,255,0.8);
 }
 
-/* Лейбл (підпис поля) */
+
 .input-container label {
     position: absolute;
     top: 50%;
@@ -248,17 +247,17 @@
     transition: all 0.3s ease;
 }
 
-/* Магія: коли в поле щось введено або воно в фокусі, лейбл відлітає вгору */
+
 .input-container input:focus + label,
 .input-container input:not(:placeholder-shown) + label {
     top: 0px;
     font-size: 12px;
     color: #fbbf24;
-    background: white; /* Фон для лейбла, щоб він перекривав рамку */
+    background: white; 
     padding: 0 5px;
 }
 
-/* КНОПКИ */
+
 .auth-btn {
     width: 100%;
     padding: 16px;
@@ -272,7 +271,7 @@
     letter-spacing: 1px;
 }
 
-/* Помаранчевий градієнт як у тебе */
+
 .gradient-btn {
     background: linear-gradient(135deg, #fbbf24, #f59e0b);
     color: white;
@@ -283,7 +282,7 @@
     transform: translateY(-2px);
 }
 
-/* Синя кнопка для реєстрації */
+
 .blue-btn {
     background: linear-gradient(135deg, #3b82f6, #1d4ed8);
     color: white;
@@ -294,7 +293,7 @@
     transform: translateY(-2px);
 }
 
-/* ФУТЕР ВІКНА */
+
 .modal-footer {
     text-align: center;
     margin-top: 25px;
@@ -313,7 +312,7 @@
     text-decoration: underline;
 }
 
-/* КНОПКА ЗАКРИТТЯ (ХРЕСТИК) */
+
 .close-btn {
     position: absolute;
     top: 20px;
@@ -324,8 +323,8 @@
     transition: 0.3s;
 }
 .close-btn:hover {
-    color: #e53e3e; /* Червоний при наведенні */
-    transform: rotate(90deg); /* Поворот при наведенні */
+    color: #e53e3e; 
+    transform: rotate(90deg); 
 }
 body {
     font-family: 'Roboto', sans-serif;
@@ -335,48 +334,115 @@ body {
      
 }
 
+#reviewModal {
+    display: none; 
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.6) !important; 
+    backdrop-filter: blur(4px); 
+    z-index: 99999 !important; 
+    justify-content: center !important;
+    align-items: center !important;
+}
 
-/* Обов'язково додаємо це до твого існуючого .slider */
+#reviewModal .modal-content {
+    background-color: #ffffff !important; 
+    padding: 30px !important;
+    border-radius: 16px !important;
+    width: 90% !important;
+    max-width: 450px !important; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+    position: relative !important;
+}
 
+
+#reviewModal form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important; 
+    margin-top: 20px !important;
+}
+
+#reviewModal input, 
+#reviewModal textarea {
+    width: 100% !important;
+    padding: 12px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    color: #333 !important;
+    font-size: 16px !important;
+    box-sizing: border-box !important;
+}
+
+
+#reviewModal .close-btn {
+    position: absolute !important;
+    right: 20px !important;
+    top: 15px !important;
+    font-size: 28px !important;
+    cursor: pointer !important;
+    color: #aaa !important;
+}
+
+#reviewModal .close-btn:hover {
+    color: #333 !important;
+}
+
+
+html.dark {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+
+html.dark img, 
+html.dark iframe, 
+html.dark .carrier-img,
+html.dark [style*="background-image"] {
+    filter: invert(1) hue-rotate(180deg);
+}
 .slider {
   width: 100%;
   display: flex;
-  justify-content: center; /* Рівняє контейнер чітко по центру екрану */
+  justify-content: center; 
   align-items: center;
-  /* Прибираємо gap, бо кнопок-стрілок більше немає і відступ не потрібен */
+ 
 }
 
 .slide-container {
-  position: relative;     /* ОБОВ'ЯЗКОВО! Прив'язує невидимі зони до меж фото */
+  position: relative;     
   width: 500px;
   height: 300px;
   overflow: hidden;
-  margin: 0 auto;         /* Додатковий захист для центрування */
+  margin: 0 auto;       
 }
 
 #slide {
   width: 500px;
   height: 100%;
-  display: block;         /* Прибирає дефолтні дрібні відступи інлайнових картинок */
+  display: block;       
   transition: opacity 0.3s ease;
 }
 
-/* Налаштування клік-зон */
+
 .click-zone {
-  position: absolute;     /* ОБОВ'ЯЗКОВО! Виводить зони з загального потоку, щоб вони не рухали фото */
+  position: absolute;    
   top: 0;
   bottom: 0;
-  width: 50%;             /* Половина від ширини фото (250px) */
-  z-index: 10;            /* Ставить поверх фото */
+  width: 50%;            
+  z-index: 10;            
   cursor: pointer;
 }
 
 .left-zone {
-  left: 0;                /* Ліва половина картинки */
+  left: 0;                
 }
 
 .right-zone {
-  right: 0;               /* Права половина картинки */
+  right: 0;            
 }
 
 button{
@@ -462,24 +528,24 @@ nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
 
 .btn-search {
-    background-color: #ff9800; /* Ваш помаранчевий колір */
-    color: white;             /* Білий колір тексту */
-    padding: 12px 24px;       /* Відступи всередині (щоб кнопка не була "худою") */
-    border: none;             /* Прибираємо чорну рамку */
-    border-radius: 8px;       /* Заокруглюємо кути */
-    font-size: 20px;          /* Розмір тексту */
-    font-weight: bold;        /* Жирний шрифт */
-    cursor: pointer;          /* Щоб при наведенні з'являлася "рука" */
-    transition: 0.3s;         /* Плавна зміна кольору */
+    background-color: #ff9800; 
+    color: white;          
+    padding: 12px 24px;     
+    border: none;             
+    border-radius: 8px;      
+    font-size: 20px;       
+    font-weight: bold;      
+    cursor: pointer;          
+    transition: 0.3s;        
     margin-top: 0px;
-     border-top: 0 !important; /* Центрування тексту всередині кнопки */
+     border-top: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .btn-search:hover {
-   background-color: #e68a00; /* Темніший колір при наведенні */
+   background-color: #e68a00; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -595,7 +661,7 @@ nav a { text-decoration: none; color: var(--text-color); font-weight: 500; }
 
 .btn-sm:hover { background: rgb(0, 238, 255); color: var(--main-color); }
 
-/* Promo App */
+
 .app-promo {
     background: #ffffff;
     padding: 80px 0;
@@ -643,14 +709,14 @@ footer { background: var(--dark-bg); color: #fff; padding: 60px 0; }
     .search-engine { flex-direction: column; }
     .benefits { grid-template-columns: 1fr; }
 }
-/* Клас помилки для інпутів */
+
 .input-container input.error {
-  border: 2px solid #ff4d4d !important; /* Робимо рамку червоною */
-  background-color: #fff5f5;           /* Додаємо легкий червоний фон */
-  animation: shake 0.4s ease-in-out;    /* Запускаємо тряску на 0.4 секунди */
+  border: 2px solid #ff4d4d !important; 
+  background-color: #fff5f5;          
+  animation: shake 0.4s ease-in-out;    
 }
 
-/* Опис рухів анімації струшування */
+
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-6px); }

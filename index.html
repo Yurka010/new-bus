@@ -90,7 +90,7 @@
         <div class="container flex-between">
             <div class="contacts">📞 0 800 500 700 | ✉️ support@busportal.ua</div>
             <div class="user-menu">
-                <a href="#">Мій квиток</a>
+               
                 <a href="#login-window" class="open-btn">Увійти</a>
             </div>
         </div>
@@ -169,7 +169,7 @@
         <input id="date" type="date">
     </div>
 
-    <button type="button" onclick="findTrips()" class="btn-search">Знайти рейси</button>
+    <a href="znaitu.html" class="btn-search">Знайти рейси</a>
 </form>
 
 <div class="results" id="results"></div>
@@ -241,7 +241,7 @@
                         <div class="price-action">
                             <span class="old-price">1600 грн</span>
                             <span class="current-price">1450 грн</span>
-                            <button class="btn-buy">Вибрати</button>
+                            <a href="perevichiki.html" class="btn-buy">Вибрати</a>
                         </div>
                     </div>
                 </div>
@@ -252,13 +252,13 @@
     <div class="reviews-header">
         <h2>Відгуки</h2>
         <div class="reviews-buttons">
-            <button class="btn-add-review">Додати відгук</button>
-            <button class="btn-all-reviews">Всі відгуки</button>
-        </div>
+    <button type="button" class="btn-add-review">Додати відгук</button>
+    <a href="vidguk.html" class="btn-all-reviews">Всі відгуки</a>
+</div>
     </div>
 
     <div class="slider-container">
-        <button class="slider-arrow prev-btn">&#10094;</button>
+        
 
         <div class="reviews-track">
             
@@ -298,7 +298,7 @@
 <section>
   <div class="slider">
   <div class="slide-container">
-    <!-- Невидимі зони тепер чітко всередині фотографії -->
+    
     <div class="click-zone left-zone" onclick="prevSlide()"></div>
     <div class="click-zone right-zone" onclick="nextSlide()"></div>
     
@@ -381,27 +381,39 @@
             <div class="footer-col">
                 <h4>Про нас</h4>
                 <ul>
-                    <li><a href="#">Про компанію</a></li>
-                    <li><a href="#">Контакти</a></li>
-                    <li><a href="#">Партнерам</a></li>
+                    <li><a href="footer.html">Про компанію</a></li>
+                    <li><a href="footer.html">Контакти</a></li>
+                    <li><a href="footer.html">Партнерам</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Допомога</h4>
                 <ul>
-                    <li><a href="#">Як купити квиток</a></li>
-                    <li><a href="#">Повернення квитків</a></li>
-                    <li><a href="#">Питання та відповіді</a></li>
+                    <li><a href="footer.html">Як купити квиток</a></li>
+                    <li><a href="footer.html">Повернення квитків</a></li>
+                    <li><a href="footer.html">Питання та відповіді</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Ми в соцмережах</h4>
                 <div class="social-links">
-                    <a href="#">FB</a> <a href="#">IG</a> <a href="#">TG</a>
+                    <a href="https://www.facebook.com/groups/359028438390315/">FB</a> <a href="https://www.instagram.com/bustrans_ua/">IG</a> <a href="https://t.me/s/infobus_eu">TG</a>
                 </div>
             </div>
         </div>
     </footer>
+    <div class="modal" id="reviewModal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Залишити відгук</h2>
+        <form>
+            <input type="text" placeholder="Ваше ім'я" required>
+            <input type="text" placeholder="Маршрут" required>
+            <textarea placeholder="Ваш відгук..." rows="4" required></textarea>
+            <button type="submit" class="btn-add-review">Надіслати</button>
+        </form>
+    </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>

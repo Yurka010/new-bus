@@ -1,0 +1,202 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333333;
+    padding: 30px 15px;
+}
+
+.info-page-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Шапка */
+.info-header {
+    background-color: #ffffff;
+    padding: 25px 35px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    margin-bottom: 30px;
+}
+
+.btn-to-home {
+    display: inline-block;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.btn-to-home:hover {
+    color: #f15a31;
+}
+
+.info-header h1 {
+    font-size: 26px;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.info-header p {
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* Основний блок розділений на дві колонки */
+.info-main-content {
+    display: flex;
+    gap: 30px;
+}
+
+/* Сайдбар з кнопками */
+.info-sidebar {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.tab-btn {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    color: #475569;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+/* Активний стан кнопки (Твій помаранчевий стиль) */
+.tab-btn.active {
+    background-color: #f15a31;
+    color: #ffffff;
+    border-color: #f15a31;
+    box-shadow: 0 4px 12px rgba(241, 90, 49, 0.2);
+}
+
+/* Контейнер для тексту */
+.info-text-container {
+    background-color: #ffffff;
+    flex-grow: 1;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #e2e8f0;
+    min-height: 400px;
+}
+
+/* Керування видимістю контенту */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Стилізація тексту всередині блоків */
+.tab-content h2 {
+    font-size: 24px;
+    color: #1e293b;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+.tab-content h3 {
+    font-size: 18px;
+    color: #1e293b;
+    margin: 20px 0 10px;
+}
+
+.tab-content p {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.tab-content ul, .tab-content .step-list {
+    margin-left: 20px;
+    margin-bottom: 25px;
+}
+
+.tab-content li {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+/* Додаткові стилі для Контактів та FAQ */
+.contact-details p {
+    background-color: #f8fafc;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #f15a31;
+}
+
+.faq-item {
+    background-color: #f8fafc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.faq-item h4 {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.faq-item p {
+    margin-bottom: 0;
+}
+
+/* Анімація появи тексту */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптація для телефонів */
+@media (max-width: 768px) {
+    .info-main-content {
+        flex-direction: column;
+    }
+    
+    .info-sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto; /* Меню можна скролити вбік на телефонах */
+        padding-bottom: 5px;
+    }
+    
+    .tab-btn {
+        white-space: nowrap;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .info-text-container {
+        padding: 20px;
+    }
+}

@@ -1,4 +1,4 @@
-// Твій код для каруселі відгуків (рядки 1-34) залишається без змін!
+
 
 document.addEventListener("DOMContentLoaded", () => {
   
@@ -197,3 +197,21 @@ function triggerInputError(element) {
     element.classList.remove('error');
   }, 400);
 }
+const modal = document.getElementById("reviewModal");
+const btnAddReview = document.querySelector(".btn-add-review");
+const btnClose = document.querySelector(".close-btn");
+
+btnAddReview.addEventListener("click", function(event) {
+    event.preventDefault();
+    modal.style.display = "flex";
+});
+
+btnClose.addEventListener("click", function() {
+    modal.style.display = "none";
+});
+
+window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});

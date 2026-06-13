@@ -1,0 +1,178 @@
+/* Базові стилі та скидання налаштувань */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Контейнер табло */
+.schedule-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Шапка табло */
+.schedule-header {
+    background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+    color: #ffffff;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.back-btn {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.back-btn:hover {
+    color: #ffffff;
+}
+
+.schedule-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Стилі таблиці */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.schedule-table th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 16px 24px;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.schedule-table tr {
+    border-bottom: 1px solid #edf2f7;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+/* Ефект наведення на рядок */
+.schedule-table tbody tr:hover {
+    background-color: #f1f5f9;
+    transform: scale(1.005);
+}
+
+.schedule-table td {
+    padding: 18px 24px;
+    color: #334155;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+/* Специфічні колонки */
+.col-time {
+    font-weight: 700;
+    color: #1e293b;
+    width: 15%;
+}
+
+.col-route {
+    font-weight: 600;
+    width: 45%;
+}
+
+.col-platform {
+    color: #64748b;
+    width: 20%;
+}
+
+.col-status {
+    width: 20%;
+}
+
+/* Стилізація бейджів статусів */
+.status-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    width: 110px;
+}
+
+/* Кольори статусів */
+.status-waiting {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.status-enroute {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.status-boarding {
+    background-color: #ffedd5;
+    color: #c2410c;
+    animation: pulse 2s infinite;
+}
+
+.status-delayed {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+/* Анімація для статусу "Посадка" */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 600px) {
+    .schedule-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px;
+    }
+    .schedule-title {
+        position: static;
+        transform: none;
+        font-size: 18px;
+    }
+    .schedule-table th, .schedule-table td {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+    .status-badge {
+        width: 90px;
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}
