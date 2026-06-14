@@ -1,4 +1,4 @@
-/* Базові стилі та скидання налаштувань */
+
 * {
     margin: 0;
     padding: 0;
@@ -124,7 +124,26 @@ body {
     text-align: center;
     width: 110px;
 }
+.book-btn {
+    background: #00c853;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
+.book-btn:hover {
+    background: #00a844;
+}
+
+.booked {
+    background: #2196f3 !important;
+    color: white;
+}
 /* Кольори статусів */
 .status-waiting {
     background-color: #e0f2fe;

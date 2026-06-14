@@ -82,20 +82,91 @@
 </div>
 
 
+<div class="modal" id="profileModal">
+    <div class="modal-content">
+        <span class="close-btn-profile">&times;</span>
+        <h2>Мій особистий кабінет</h2>
+        
+        <div class="tabs">
+            <button class="active" onclick="openTab('tickets', this, event)">Квитки</button>
+            <button onclick="openTab('settings', this, event)">Налаштування</button>
+        </div>
 
-<body>
+        <div id="tickets" class="tab-content">
+            <table class="tickets-table">
+                <thead>
+                    <tr>
+                        <th>Маршрут</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Київ — Варшава</td>
+                        <td>15.06.2026</td>
+                        <td><span class="status-paid">Оплачено</span></td>
+                    </tr>
+                    <tr>
+                        <td>Львів — Краків</td>
+                        <td>20.06.2026</td>
+                        <td><span class="status-pending">Очікує</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    
-    <div class="top-bar">
-        <div class="container flex-between">
-            <div class="contacts">📞 0 800 500 700 | ✉️ support@busportal.ua</div>
-            <div class="user-menu">
-               
-                <a href="#login-window" class="open-btn">Увійти</a>
+        <div id="settings" class="tab-content" style="display:none;">
+            <div class="settings-container">
+                <div class="setting-item">
+                    <span>Сповіщення на пошту</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>Темна тема</span>
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <button class="save-btn" id="saveBtn">Зберегти зміни</button>
             </div>
         </div>
     </div>
+</div>
 
+<script>
+function openTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+    document.getElementById(tabId).style.display = 'block';
+}
+</script>
+<body>
+
+ <div class="top-bar">
+        <div class="container flex-between" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="contacts">📞 0 800 500 700 | ✉️ support@busportal.ua</div>
+            
+            <div class="user-menu" style="display: flex; align-items: center; gap: 20px;">
+                <a href="#login-window" class="open-btn" style="color: #ffffff; text-decoration: none;">Увійти</a>
+                
+                <a href="#" class="cart-btn" id="cartButton" style="display: 
+                flex; align-items: center; gap: 6px; color: #ffffff; text-decoration: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" style="background-color: #ff9800; color: #ffffff; font-size:
+                     11px; font-weight: bold; border-radius: 50%; padding: 2px 6px; min-width: 14px; text-align: center;">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
     <header>
         <div class="container flex-between">
             <div class="logo">Bus<span>Portal</span></div>
@@ -295,17 +366,7 @@
         </div>
 
 </section>
-<section>
-  <div class="slider">
-  <div class="slide-container">
-    
-    <div class="click-zone left-zone" onclick="prevSlide()"></div>
-    <div class="click-zone right-zone" onclick="nextSlide()"></div>
-    
-    <img id="slide" src="img/01002gdg-c5c1.jpeg">
-  </div>
-</div>
-</section>
+
 <section class="trust-stats container">
     <div class="stat-item">
         <span class="stat-number">500+</span>
@@ -412,6 +473,27 @@
             <textarea placeholder="Ваш відгук..." rows="4" required></textarea>
             <button type="submit" class="btn-add-review">Надіслати</button>
         </form>
+    </div>
+</div>
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-sidebar-header">
+        <h2>Кошик замовлень</h2>
+        <button class="close-cart-btn" id="closeCartBtn">&times;</button>
+    </div>
+
+    <div class="cart-sidebar-content" id="cart-items-container"></div>
+        
+        
+        <div id="cart-items">
+            
+   </div>
+
+<div class="cart-total">
+    <strong>До сплати: </strong> <span id="total-price">0</span> грн
+</div>
+        <a href="oplata.html" class="checkout-btn">Оформити замовлення</a>
     </div>
 </div>
     <script src="script.js"></script>

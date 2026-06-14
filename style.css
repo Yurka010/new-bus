@@ -16,21 +16,9 @@
 }
 
 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  
-    background: rgba(0, 0, 0, 0.5); 
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    /* М'яка поява */
-    animation: fadeInModal 0.4s ease;
-}
+
+
+
 
 .user-avatar {
   width: 40px;
@@ -89,6 +77,12 @@
 }
 
 
+/* Внутрішній блок модалки */
+
+
+/* Стиль для кнопок вкладок */
+
+
 .glass {
     background: rgba(255, 255, 255, 0.7); 
     backdrop-filter: blur(15px);
@@ -96,16 +90,7 @@
     border: 1px solid rgba(255, 255, 255, 0.466); 
 }
 
-.modal-content {
-    padding: 40px;
-    border-radius: 25px; 
-    width: 100%;
-    max-width: 420px;
-    position: relative;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-   
-    animation: slideUpModal 0.5s ease;
-}
+
 
 @keyframes slideUpModal {
     from { transform: translateY(30px); opacity: 0; }
@@ -393,24 +378,6 @@ body {
 }
 
 
-html.dark {
-    filter: invert(1) hue-rotate(180deg);
-}
-
-
-html.dark img, 
-html.dark iframe, 
-html.dark .carrier-img,
-html.dark [style*="background-image"] {
-    filter: invert(1) hue-rotate(180deg);
-}
-.slider {
-  width: 100%;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
- 
-}
 
 .slide-container {
   position: relative;     
@@ -456,6 +423,190 @@ button{
     padding: 0 20px;
 }
 
+.slider {
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+ 
+}
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+    display: none; /* Ховаємо оверлей за замовчуванням */
+}
+
+/* Коли додаємо клас через JS — показуємо */
+.cart-overlay.open {
+    display: block !important; 
+}
+
+/* БІЧНА ПАНЕЛЬ КОШИКА */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    max-width: 100%;
+    height: 100%;
+    background-color: #ffffff !important;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    /* ПОЧАТКОВИЙ СТАН: схований за правий край екрана */
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+/* СТАН ПРИ ВІДКРИТТІ: додаємо .open */
+.cart-sidebar.open {
+    transform: translateX(0); /* "Виїжджає" на екран */
+}
+/* Шапка кошика */
+.cart-sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-sidebar-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #2b3035;
+}
+
+.close-cart-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+}
+
+.close-cart-btn:hover {
+    color: #000;
+}
+
+/* Список товарів всередині */
+.cart-sidebar-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; /* Якщо квитків багато, з'явиться скролл */
+}
+
+/* Стиль одного купленого квитка */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #ff9800; /* Помаранчевий акцент під твою кнопку */
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.item-title {
+    font-weight: bold;
+    color: #2b3035;
+}
+
+.item-date {
+    font-size: 12px;
+    color: #777;
+}
+
+.item-price {
+    font-weight: bold;
+    color: #ff9800;
+}
+
+
+
+/* Низ кошика з кнопкою оформлення */
+.cart-sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Кнопка "Оформити" в стилі твоєї помаранчевої кнопки */
+.checkout-btn {
+    width: 100%;
+    background-color: #ff9800; /* Колір як у "Знайти рейси" */
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.checkout-btn:hover {
+    background-color: #e68a00;
+}
+/* Вирівнюємо кнопку входу та кошик в один рядок */
+.user-menu {
+    display: flex !important; /* Force flexbox layout */
+    flex-direction: row;      /* Ставимо в один рядок */
+    align-items: center;      /* Вирівнюємо по вертикалі */
+    gap: 20px;                /* Фіксована відстань між ними */
+}
+
+/* Стилі для самої кнопки кошика */
+.cart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+    text-decoration: none;
+    order: 2; /* Змінюй на 1 або 2, якщо захочеш поміняти місцями з "Увійти" */
+}
+
+/* Стиль для кнопки Увійти всередині цього меню */
+.user-menu .open-btn {
+    order: 1;
+}
+
+.cart-btn:hover {
+    color: #ff9800; /* Помаранчевий колір при наведенні */
+}
+
+/* Помаранчевий кружечок з цифрою "0" */
+.cart-count {
+    background-color: #ff9800;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    min-width: 14px;
+    text-align: center;
+}
 .flex-between {
     display: flex;
     justify-content: space-between;
@@ -721,4 +872,224 @@ footer { background: var(--dark-bg); color: #fff; padding: 60px 0; }
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-6px); }
   40%, 80% { transform: translateX(6px); }
+}
+.remove-item-btn {
+    background-color: #ff4d4d; /* Червоний колір для видалення */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.remove-item-btn:hover {
+    background-color: #ff1a1a; /* Темніший червоний при наведенні */
+}
+
+
+
+
+
+
+.close-btn, .close-btn-profile {
+    cursor: pointer; /* Це зробить курсор у вигляді руки */
+    display: inline-block;
+    padding: 5px;
+    font-size: 20px;
+}
+
+/* Додатково: ефект при наведенні для кращого досвіду користувача */
+.close-btn:hover, .close-btn-profile:hover {
+    color: red; /* Хрестик ставатиме червоним при наведенні */
+    transform: scale(1.1); /* Трішки збільшиться */
+}
+/* Затемнення фону */
+#profileModal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Більш прозорий, ніж чорний */
+    backdrop-filter: blur(5px); /* Ефект розмиття заднього фону - виглядає дуже сучасно */
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease; /* Плавна поява */
+}
+
+/* Саме вікно */
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    width: 450px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.modal {
+    display: none; 
+}
+/* Заголовок */
+.modal-content h2 {
+    margin-top: 0;
+    font-family: sans-serif;
+    color: #333;
+}
+
+/* Вкладки */
+.tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.tabs button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tabs button:hover, .tabs button.active {
+    color: #007bff; /* Колір при наведенні */
+}
+
+/* Хрестик закриття */
+.close-btn-profile {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+    transition: 0.3s;
+}
+
+.close-btn-profile:hover {
+    color: #ff4757; /* Червоний при наведенні */
+    transform: rotate(90deg); /* Легкий ефект повороту */
+}
+
+/* Анімація появи */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: sans-serif;
+}
+
+.tickets-table th {
+    text-align: left;
+    color: #888;
+    font-size: 14px;
+    padding: 10px;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+.tickets-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #f9f9f9;
+    font-size: 15px;
+}
+
+/* Стилі для статусів */
+.status-paid {
+    color: #27ae60;
+    background: #eafaf1;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.status-pending {
+    color: #f39c12;
+    background: #fef5e7;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+.settings-container { display: flex; flex-direction: column; gap: 20px; padding-top: 15px; }
+
+.setting-item { 
+    display: flex; justify-content: space-between; align-items: center; 
+    font-size: 15px; color: #444; 
+}
+
+/* Стиль для крутого перемикача (Switch) */
+.switch { position: relative; display: inline-block; width: 45px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider:before { 
+    position: absolute; content: ""; height: 18px; width: 18px; 
+    left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; 
+}
+input:checked + .slider { background-color: #3498db; }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* Кнопка збереження */
+.save-btn {
+    background: #3498db; color: white; border: none; padding: 12px; 
+    border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px;
+    transition: 0.3s;
+}
+.save-btn:hover { background: #2980b9; }
+.switch { position: relative; display: inline-block; width: 45px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.toggle-slider { 
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; 
+    background-color: #ccc; transition: .4s; border-radius: 24px; 
+}
+.toggle-slider:before { 
+    position: absolute; content: ""; height: 18px; width: 18px; 
+    left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; 
+}
+
+/* Коли перемикач активний */
+input:checked + .toggle-slider { background-color: #3498db; }
+input:checked + .toggle-slider:before { transform: translateX(20px); }
+body.dark-theme .card, 
+body.dark-theme .white-block, 
+body.dark-theme .modal-content {
+    background-color: #2a2a2a !important; /* Темно-сірий колір замість білого */
+    color: #ffffff !important;           /* Білий текст на темному фоні */
+}
+body.dark-theme footer {
+    background-color: #1a1a1a !important;
+    color: #cccccc !important;
+}
+/* Темна тема для всього тіла сторінки */
+body.dark-theme {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+/* Зміна кольору фону для блоків (карток) */
+body.dark-theme .white-block, 
+body.dark-theme .container {
+    background-color: #1e1e1e !important;
+}
+
+/* Зміна кольору тексту в футері та інших секціях */
+body.dark-theme footer,
+body.dark-theme .footer-container {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+/* Якщо у вас є секції з білим фоном, їх теж треба перефарбувати */
+body.dark-theme .section-white {
+    background-color: #2c2c2c !important;
 }

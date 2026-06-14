@@ -1,217 +1,393 @@
+ document.addEventListener('DOMContentLoaded', () => {
 
+    // --- 1. ЛОГІКА ПОЛІВ "ЗВІДКИ/КУДИ" ---
+    const fromInput = document.getElementById("from");
+    const dropdownFrom = document.getElementById("dropdown-from");
+    const toInput = document.getElementById("to");
+    const dropdownTo = document.getElementById("dropdown-to");
 
-document.addEventListener("DOMContentLoaded", () => {
-  
-  // 1. ЕЛЕМЕНТИ ДЛЯ ПЕРШОГО ПОЛЯ (Звідки)
-  const fromInput = document.getElementById("from");
-  const dropdownFrom = document.getElementById("dropdown-from");
-
-  fromInput.addEventListener("focus", () => {
-    dropdownFrom.classList.add("active");
-  });
-
-  const fromItems = dropdownFrom.querySelectorAll(".dropdown-item");
-  fromItems.forEach(item => {
-    item.addEventListener("click", () => {
-      fromInput.value = item.getAttribute("data-city");
-      dropdownFrom.classList.remove("active");
-    });
-  });
-
-
-  // 2. ЕЛЕМЕНТИ ДЛЯ ДРУГОГО ПОЛЯ (Куди)
-  const toInput = document.getElementById("to");
-  const dropdownTo = document.getElementById("dropdown-to"); // Тут ми шукаємо виправлений в HTML id
-
-  toInput.addEventListener("focus", () => {
-    dropdownTo.classList.add("active");
-  });
-
-  const toItems = dropdownTo.querySelectorAll(".dropdown-item");
-  toItems.forEach(item => {
-    item.addEventListener("click", () => {
-      toInput.value = item.getAttribute("data-city");
-      dropdownTo.classList.remove("active");
-    });
-  });
-
-
-  // 3. ЗАГАЛЬНЕ ЗАКРИТТЯ ОБВОХ МЕНЮ ПРИ КЛІКУ ПО ЕКРАНУ
-  document.addEventListener("click", (e) => {
-    // Закриваємо перше, якщо клікнули повз нього
-    if (!fromInput.contains(e.target) && !dropdownFrom.contains(e.target)) {
-      dropdownFrom.classList.remove("active");
-    }
-    // Закриваємо друге, якщо клікнули повз нього
-    if (!toInput.contains(e.target) && !dropdownTo.contains(e.target)) {
-      dropdownTo.classList.remove("active");
-    }
-  });
-
-}); 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Знаходимо вікно реєстрації та його елементи за вашими ID і класами
-    const regWindow = document.getElementById('reg-window');
-    
-    if (regWindow) {
-        const regForm = regWindow.querySelector('.auth-form');
-        const emailInput = document.getElementById('RegEmail');
-        const passwordInput = document.getElementById('reg-password');
-
-        // 2. Вішаємо обробник на відправку форми реєстрації
-        regForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Зупиняємо перезавантаження сторінки
-
-            const emailValue = emailInput.value.trim();
-            const passwordValue = passwordInput.value.trim();
-
-            // 3. Створюємо об'єкт нового користувача
-            const user = {
-                email: emailValue,
-                password: passwordValue
-            };
-
-            // 4. Записуємо дані в локальну пам'ять браузера (localStorage)
-            localStorage.setItem('registeredUser', JSON.stringify(user));
-
-            // 5. Виводимо повідомлення про успіх
-            alert('Реєстрація успішна! Тепер ви можете увійти.');
-
-            // Очищаємо поля після успішної реєстрації
-            regForm.reset();
-
-            // Автоматично перенаправляємо користувача на вікно входу
-            window.location.hash = '#login-window';
+    if (fromInput && dropdownFrom) {
+        fromInput.addEventListener("focus", () => dropdownFrom.classList.add("active"));
+        dropdownFrom.querySelectorAll(".dropdown-item").forEach(item => {
+            item.addEventListener("click", () => {
+                fromInput.value = item.getAttribute("data-city");
+                dropdownFrom.classList.remove("active");
+                   updateCartUI();
+    updateCartCount(); // ДОДАЙ ЦЕ
+            });
         });
     }
+
+    if (toInput && dropdownTo) {
+        toInput.addEventListener("focus", () => dropdownTo.classList.add("active"));
+        dropdownTo.querySelectorAll(".dropdown-item").forEach(item => {
+            item.addEventListener("click", () => {
+                toInput.value = item.getAttribute("data-city");
+                dropdownTo.classList.remove("active");
+            });
+        });
+    }
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. ЛОГІКА РЕЄСТРАЦІЇ ---
+    const regWindow = document.getElementById('reg-window');
+    // Знаходимо форму всередині вікна реєстрації за її унікальним контейнером
+    const regForm = regWindow ? regWindow.querySelector('.auth-form') : null;
+
+    if (regForm) {
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Зупиняє перезавантаження сторінки
+            
+            const user = {
+                email: regForm.querySelector('#RegEmail').value.trim(),
+                password: regForm.querySelector('#reg-password').value.trim()
+            };
+            
+            localStorage.setItem('registeredUser', JSON.stringify(user));
+            alert('Реєстрація успішна!');
+            regForm.reset();
+            // Тут додайте логіку закриття вікна, якщо потрібно
+        });
+    }
+
+    // --- ЛОГІКА ПРОФІЛЮ ТА ВХОДУ ---
+const profileBtn = document.querySelector('.open-btn');
+const profileModal = document.getElementById('profileModal');
+const loginWindow = document.getElementById('login-window');
+
+document.addEventListener('click', (e) => {
+    // Шукаємо, чи натиснули ми на кнопку профілю (клас .open-btn)
+    if (e.target.closest('.open-btn')) {
+        e.preventDefault(); // Зупиняємо перехід або відкриття форми входу
+        
+        const isLogged = localStorage.getItem('isUserLoggedIn') === 'true';
+        
+        if (isLogged) {
+            console.log("Відкриваю профіль...");
+            const profileModal = document.getElementById('profileModal');
+            if (profileModal) {
+                profileModal.style.display = 'flex'; // Відкриваємо профіль
+            } else {
+                alert("Помилка: Вікно профілю не знайдено в HTML!");
+            }
+        } else {
+            console.log("Відкриваю форму входу...");
+            const loginWindow = document.getElementById('login-window');
+            if (loginWindow) {
+                loginWindow.style.display = 'flex'; // Відкриваємо вхід
+            }
+        }
+    }
+});
+});
+   // --- 4. ЛОГІКА ВІДГУКІВ ---
+const btnAddReview = document.querySelector(".btn-add-review");
+const modal = document.getElementById("reviewModal");
+
+if (btnAddReview && modal) {
+    // Відкриття
+    btnAddReview.addEventListener('click', () => {
+        modal.style.display = "flex";
+    });
+
+    // Закриття через делегування (надійніший метод)
+    modal.addEventListener('click', (e) => {
+        if (e.target.classList.contains('close-btn') || e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+}
+
+    // --- 5. КОШИК ТА ІНШЕ ---
+    updateCartUI();
+});
+
+
+function updateCartUI() {
+    const cartContainer = document.getElementById('cart-items-container');
+    const cart = JSON.parse(localStorage.getItem('bookedTickets')) || [];
+
+    if (cartContainer) {
+        cartContainer.innerHTML = '';
+        cart.forEach((ticket, index) => {
+            cartContainer.innerHTML += ` 
+                <div class="cart-item">
+                    <p><strong>${ticket.route}</strong></p>
+                    <p>Час: ${ticket.time}</p>
+                    <p>Ціна: ${ticket.price}</p>
+                    <button class="remove-item-btn" onclick="removeItem(${index})">Видалити</button>
+                </div>`;
+        });
+    }
+}
+function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem('bookedTickets')) || [];
+    cart.splice(index, 1); // Видаляємо квиток за номером
+    localStorage.setItem('bookedTickets', JSON.stringify(cart));
+    updateCartUI(); // Оновлюємо кошик на екрані
+    updateCartCount(); // ДОДАЙ ЦЕ
+}
+function clearCart() {
+    localStorage.removeItem('bookedTickets');
+    updateCartUI();
+      localStorage.removeItem('bookedTickets');
+    updateCartUI();
+    updateCartCount(); // ДОДАЙ ЦЕ
+}
+function addToCart(newTicket) {
+    let savedData = localStorage.getItem('bookedTickets');
+    let cart = [];
+
+    // Безпечно отримуємо масив
+    try {
+        let parsed = JSON.parse(savedData);
+        if (Array.isArray(parsed)) {
+            cart = parsed;
+        }
+    } catch (e) {
+        console.warn("Дані пошкоджені, скидаємо");
+    }
+
+    cart.push(newTicket);
+    localStorage.setItem('bookedTickets', JSON.stringify(cart));
+    
+    // ОНОВЛЕННЯ ТУТ:
+    updateCartUI(); 
+    updateCartCount(); // Ця функція оновлює саме лічильник (той самий .cart-count)
+    
+    console.log("Квиток додано, лічильник оновлено.");
+}
+ function triggerInputError(el) {
+    if (el) {
+        el.classList.add('error');
+        setTimeout(() => el.classList.remove('error'), 400);
+    }
+}
+// Додай цей код всередині головного блоку DOMContentLoaded
+const cartButton = document.getElementById('cartButton'); // Беремо кнопку по ID
+const cartSidebar = document.getElementById('cartSidebar'); // Оголошуємо саму панель!
+const cartOverlay = document.getElementById('cartOverlay');
+const closeCartBtn = document.getElementById('closeCartBtn');
+
+// Тепер використовуємо ці змінні:
+if (cartButton && cartSidebar) {
+    cartButton.addEventListener('click', (e) => {
+        e.preventDefault(); // Додаємо, щоб посилання не перезавантажувало сторінку
+        cartSidebar.classList.add('open');
+        if (cartOverlay) cartOverlay.classList.add('open');
+    });
+}
+
+if (closeCartBtn && cartSidebar) {
+    closeCartBtn.addEventListener('click', () => {
+        document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- ПЕРЕВІРКА СТАТУСУ ПРИ ЗАВАНТАЖЕННІ ---
+    const isLogged = localStorage.getItem('isUserLoggedIn') === 'true';
+    const profileBtn = document.querySelector('.open-btn'); // Переконайтеся, що кнопка "Увійти" має клас .open-btn
+
+    if (isLogged && profileBtn) {
+        profileBtn.textContent = 'Мій профіль';
+    }
+
+    // ... далі йде ваша інша логіка ...
+});
+        cartSidebar.classList.remove('open');
+        if (cartOverlay) cartOverlay.classList.remove('open');
+    });
+}
+function updateCartCount() {
+    const countElement = document.querySelector('.cart-count'); // ЗАМІНИ '.cart-count-class' НА КЛАС АБО ID ТВОГО ЛІЧИЛЬНИКА
+    const cart = JSON.parse(localStorage.getItem('bookedTickets')) || [];
+     
+    if (countElement) {
+        countElement.textContent = cart.length; // Встановлюємо кількість елементів у масиві
+    }
+}
+// Це змушує лічильник оновитися відразу після завантаження сторінки
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartCount();
 });
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Знаходимо вікно входу (за посиланням #login-window або класом модалки)
-    // Шукаємо кнопку "Продовжити" всередині форми входу
-    const loginBtn = document.querySelector('.auth-form button, #login-window button, .modal button');
+    // ... ваш інший код (кошик, меню, тощо) ...
 
-    if (loginBtn) {
-        // Знаходимо інпути пошти та пароля відносно цієї кнопки
-        const loginForm = loginBtn.closest('form') || loginBtn.parentElement;
-        const loginEmailInput = loginForm.querySelector('input[type="email"]') || loginForm.querySelectorAll('input')[0];
-        const loginPasswordInput = loginForm.querySelector('input[type="password"]') || loginForm.querySelectorAll('input')[1];
+    // --- ЛОГІКА РЕЄСТРАЦІЇ ---
+    // ...
 
-        loginBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Зупиняємо оновлення сторінки
-
-            const emailValue = loginEmailInput.value.trim();
-            const passwordValue = loginPasswordInput.value.trim();
-
-            // 2. Дістаємо з пам'яті браузера користувача, якого ми зареєстрували раніше
+    // --- ЛОГІКА ВХОДУ (ОСТАННЯ ВЕРСІЯ) ---
+    const testBtn = document.querySelector('button[type="submit"]');
+    if (testBtn) {
+        testBtn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            const loginForm = testBtn.closest('form');
+            const emailInput = loginForm.querySelector('input[type="email"]');
+            const passInput = loginForm.querySelector('input[type="password"]');
             const savedUser = JSON.parse(localStorage.getItem('registeredUser'));
 
-            // 3. Перевіряємо, чи взагалі хтось реєструвався
-            if (!savedUser) {
-                alert('Користувача не знайдено! Спочатку пройдіть реєстрацію.');
-                return;
+            if (savedUser && emailInput.value === savedUser.email && passInput.value === savedUser.password) {
+                alert('Вхід успішний!');
+                localStorage.setItem('isUserLoggedIn', 'true');
+                const profileBtn = document.querySelector('.open-btn');
+                if (profileBtn) profileBtn.textContent = 'Мій профіль';
+                const loginWindow = document.getElementById('login-window');
+                if (loginWindow) loginWindow.style.display = 'none';
+            } else {
+                alert('Невірний email або пароль!');
             }
-
-          // 4. Перевіряємо збіг пошти та пароля
-  if (emailValue === savedUser.email && passwordValue === savedUser.password) {
-    alert('Вхід успішний! Ласкаво просимо.');
-    
-    // Закриваємо модальне вікно (прибираємо hash з URL)
-    window.location.hash = '';
-    
-    // Очищаємо поля форми
-    loginForm.reset();
-    
-    // Твій код для зміни тексту кнопки в шапці (якщо є)
-    const topBarLoginBtn = document.querySelector('.open-btn, [href="#login-window"]');
-    if (topBarLoginBtn) {
-      topBarLoginBtn.textContent = 'Мій профіль';
-      topBarLoginBtn.href = '#';
+        });
     }
-  } else {
-    // ЯКЩО ДАНІ НЕ ЗБІГАЮТЬСЯ — СТРУШУЄМО ПОЛЯ
-    triggerInputError(loginEmailInput);
-    triggerInputError(loginPasswordInput);
-  }
+
+}); 
+document.addEventListener('click', function(e) {
+    // Шукаємо, чи був клік по кнопці з текстом "Мій профіль" або класом .open-btn
+    if (e.target.matches('.open-btn') || e.target.closest('.open-btn')) {
+        e.preventDefault();
+        
+        console.log("Клік по кнопці профілю зафіксовано!");
+
+        const isLogged = localStorage.getItem('isUserLoggedIn') === 'true';
+
+        if (isLogged) {
+            const profileModal = document.getElementById('profileModal');
+            if (profileModal) {
+                profileModal.style.display = 'flex';
+                console.log("Відкриваю вікно профілю");
+            } else {
+                console.error("Помилка: Елемент profileModal не знайдено в HTML!");
+            }
+        } else {
+            const loginWindow = document.getElementById('login-window');
+            if (loginWindow) {
+                loginWindow.style.display = 'flex';
+                console.log("Відкриваю вікно входу");
+            }
+        }
+    }
+});
+// Слухаємо кліки по всьому документу
+document.addEventListener('click', (e) => {
+    // Перевіряємо, чи клікнули саме на хрестик закриття (будь-який)
+    // У вашому HTML це клас "close-btn" або "close-btn-profile"
+    if (e.target.matches('.close-btn') || e.target.matches('.close-btn-profile')) {
+        e.preventDefault();
+        
+        // Знаходимо батьківське вікно (модалку) і ховаємо його
+        const modal = e.target.closest('.modal');
+        if (modal) {
+            modal.style.display = 'none';
+            console.log("Вікно закрито!");
+        }
+    }
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const loginWindow = document.getElementById('login-window');
+    const profileModal = document.getElementById('profileModal');
+    const openBtn = document.querySelector('.open-btn');
+
+    // 1. Оновлення кнопки при старті
+    if (localStorage.getItem('isUserLoggedIn') === 'true' && openBtn) {
+        openBtn.textContent = 'Мій профіль';
+    }
+
+   document.addEventListener('click', (e) => {
+    // 1. Якщо клікнули на кнопку відкриття профілю - відкриваємо
+    if (e.target.closest('.open-btn')) {
+        e.preventDefault();
+        document.getElementById('profileModal').style.display = 'flex';
+    }
+
+    // 2. Якщо клікнули на хрестик - закриваємо
+    if (e.target.matches('.close-btn-profile')) {
+        document.getElementById('profileModal').style.display = 'none';
+    }
+
+    // 3. ЯКЩО клікнули на фон (навколо вікна), але НЕ на саме вікно - закриваємо
+    if (e.target.id === 'profileModal') {
+        document.getElementById('profileModal').style.display = 'none';
+    }
+});
+
+    // 3. Логіка входу
+    const loginForm = document.querySelector('#login-window .auth-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            localStorage.setItem('isUserLoggedIn', 'true');
+            openBtn.textContent = 'Мій профіль';
+            loginWindow.style.display = 'none';
+            alert('Вхід успішний!');
         });
     }
 });
 
-const images = [
-  "img/depositphotos_243568424-stock-photo-zurich-cityscape-image-zurich-switzerland.jpg",
-  "img/d70a4911f04a3f917c0d985e4d2e08f0.jpeg",
-  "img/01002gdg-c5c1.jpeg"
-];
+function openTab(tabId, element, event) {
+    // Зупиняємо спливання, щоб модалка не закрилась
+    if (event) event.stopPropagation();
 
-let current = 0;
-const slide = document.getElementById("slide");
-let isTransitioning = false; // Захист від швидких кліків
+    // 1. Сховати всі елементи з класом .tab-content
+    document.querySelectorAll('.tab-content').forEach(function(content) {
+        content.style.display = 'none';
+    });
 
-function changeSlide(direction) {
-  if (isTransitioning) return; // Якщо анімація ще йде — ігноруємо клік
-  isTransitioning = true;
+    // 2. Показати лише той елемент, ID якого ми передали (tabId)
+    document.getElementById(tabId).style.display = 'block';
 
-  // 1. Плавно ховаємо поточну картинку
-  slide.style.opacity = "0";
+    // 3. Змінити активну кнопку
+    document.querySelectorAll('.tabs button').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    element.classList.add('active');
+}
+document.addEventListener('DOMContentLoaded', function() {
+    // Функція вкладок
+    window.openTab = function(tabId, element, event) {
+        document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+        document.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabId).style.display = 'block';
+        element.classList.add('active');
+    };
 
-  // 2. Чекаємо 300мс (поки згасне) і змінюємо індекс
-  setTimeout(() => {
-    if (direction === "next") {
-      current++;
-      if (current >= images.length) current = 0;
-    } else if (direction === "prev") {
-      current--;
-      if (current < 0) current = images.length - 1;
+    // Обробка темної теми
+    const saveBtn = document.getElementById('saveBtn');
+    const themeToggle = document.getElementById('themeToggle');
+
+    if (saveBtn && themeToggle) {
+        saveBtn.addEventListener('click', function() {
+            if (themeToggle.checked) {
+                document.body.classList.add('dark-theme');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-theme');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
     }
 
-    // Змінюємо саму картинку
-    slide.src = images[current];
+    // Відновлення теми при завантаженні сторінки
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-theme');
+        if (themeToggle) themeToggle.checked = true;
+    }
+});
+// Функція для підрахунку суми
+function updateTotalPrice() {
+    let total = 0;
+    // Шукаємо всі елементи, де вказана ціна квитків у кошику
+    // ВАЖЛИВО: переконайтеся, що в кошику ціна має клас "ticket-price"
+    const priceElements = document.querySelectorAll('.ticket-price'); 
     
-    // 3. Плавно показуємо нову
-    slide.style.opacity = "1";
+    priceElements.forEach(item => {
+        // Отримуємо текст ціни та перетворюємо в число
+        total += parseFloat(item.innerText) || 0;
+    });
 
-    // Дозволяємо наступний клік після завершення появи (ще 300мс)
-    setTimeout(() => {
-      isTransitioning = false;
-    }, 300);
-  }, 300);
+    // Оновлюємо значення в блоці з ID "total-price"
+    document.getElementById('total-price').innerText = total;
 }
-
-// Ці дві функції викликаються при кліках на ліву/праву частину
-function nextSlide() {
-  changeSlide("next");
+function removeTicket(event) {
+    // 1. Ваш код, який видаляє квиток...
+    event.target.closest('.cart-item').remove();
+    
+    // 2. ДОДАЙТЕ ЦЕЙ РЯДОК ПІСЛЯ ВИДАЛЕННЯ:
+    updateTotalPrice(); 
 }
-
-function prevSlide() {
-  changeSlide("prev");
-}
-// Функція для активації ефекту помилки
-function triggerInputError(element) {
-  if (!element) return;
-  
-  // Додаємо клас помилки (інпут почне трястись і стане червоним)
-  element.classList.add('error');
-  
-  // Через 400 мілісекунд (коли анімація закінчиться) прибираємо клас, 
-  // щоб його можна було ввімкнути знову при наступному кліку
-  setTimeout(() => {
-    element.classList.remove('error');
-  }, 400);
-}
-const modal = document.getElementById("reviewModal");
-const btnAddReview = document.querySelector(".btn-add-review");
-const btnClose = document.querySelector(".close-btn");
-
-btnAddReview.addEventListener("click", function(event) {
-    event.preventDefault();
-    modal.style.display = "flex";
-});
-
-btnClose.addEventListener("click", function() {
-    modal.style.display = "none";
-});
-
-window.addEventListener("click", function(event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-});

@@ -1,0 +1,46 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.payment-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 { text-align: center; color: #2b3035; }
+
+.input-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; color: #666; font-size: 14px; }
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.row { display: flex; gap: 10px; }
+
+.pay-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.pay-btn:hover { background-color: #e68900; }
