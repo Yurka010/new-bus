@@ -1155,3 +1155,6 @@ body.dark-theme .section-white {
     cursor: not-allowed !important;
     opacity: 0.8;
 }
+.hidden {
+    display: none !important;
+}

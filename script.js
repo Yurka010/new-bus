@@ -29,56 +29,56 @@
     }
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. ЛОГІКА РЕЄСТРАЦІЇ ---
-    const regWindow = document.getElementById('reg-window');
-    // Знаходимо форму всередині вікна реєстрації за її унікальним контейнером
-    const regForm = regWindow ? regWindow.querySelector('.auth-form') : null;
-
-    if (regForm) {
-        regForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Зупиняє перезавантаження сторінки
-            
-            const user = {
-                email: regForm.querySelector('#RegEmail').value.trim(),
-                password: regForm.querySelector('#reg-password').value.trim()
-            };
-            
-            localStorage.setItem('registeredUser', JSON.stringify(user));
-            alert('Реєстрація успішна!');
-            regForm.reset();
-            // Тут додайте логіку закриття вікна, якщо потрібно
-        });
+   // --- 2. ПЕРЕВІРКА АВТОРИЗАЦІЇ ---
+function checkAuthStatus() {
+    const isLogged = localStorage.getItem('isUserLoggedIn') === 'true';
+    const loginBtn = document.querySelector('.open-btn');
+    
+    if (loginBtn) {
+        if (isLogged) {
+            loginBtn.innerText = "Мій профіль";
+        } else {
+            loginBtn.innerText = "Увійти";
+        }
     }
+    return isLogged;
+}
 
-    // --- ЛОГІКА ПРОФІЛЮ ТА ВХОДУ ---
-const profileBtn = document.querySelector('.open-btn');
-const profileModal = document.getElementById('profileModal');
-const loginWindow = document.getElementById('login-window');
+// --- 3. ЗАВАНТАЖЕННЯ ---
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartUI();
+    checkAuthStatus();
+    
+    // ПРИБИРАЄМО АВТОМАТИЧНЕ ВІДКРИТТЯ ВІКНА (очищаємо hash)
+    if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+    }
+});
 
+// --- 4. КЛІК ПО КНОПЦІ ПРОФІЛЮ ---
 document.addEventListener('click', (e) => {
-    // Шукаємо, чи натиснули ми на кнопку профілю (клас .open-btn)
     if (e.target.closest('.open-btn')) {
-        e.preventDefault(); // Зупиняємо перехід або відкриття форми входу
+        e.preventDefault();
         
         const isLogged = localStorage.getItem('isUserLoggedIn') === 'true';
         
         if (isLogged) {
             console.log("Відкриваю профіль...");
-            const profileModal = document.getElementById('profileModal');
-            if (profileModal) {
-                profileModal.style.display = 'flex'; // Відкриваємо профіль
-            } else {
-                alert("Помилка: Вікно профілю не знайдено в HTML!");
-            }
+            document.getElementById('profileModal').style.display = 'flex';
         } else {
             console.log("Відкриваю форму входу...");
-            const loginWindow = document.getElementById('login-window');
-            if (loginWindow) {
-                loginWindow.style.display = 'flex'; // Відкриваємо вхід
-            }
+            document.getElementById('login-window').style.display = 'flex';
         }
     }
 });
+
+// --- 5. КОЛИ КОРИСТУВАЧ НАТИСКАЄ "ПРОДОВЖИТИ" (ВХІД) ---
+// Знайдіть кнопку "Продовжити" у вашому HTML і додайте їй цей onclick або виклик
+function loginSuccess() {
+    localStorage.setItem('isUserLoggedIn', 'true');
+    document.getElementById('login-window').style.display = 'none';
+    checkAuthStatus();
+}
 });
    // --- 4. ЛОГІКА ВІДГУКІВ ---
 const btnAddReview = document.querySelector(".btn-add-review");
