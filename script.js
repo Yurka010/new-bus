@@ -316,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
             openBtn.textContent = 'Мій профіль';
             loginWindow.style.display = 'none';
             alert('Вхід успішний!');
+            
         });
     }
 });
@@ -391,3 +392,104 @@ function removeTicket(event) {
     // 2. ДОДАЙТЕ ЦЕЙ РЯДОК ПІСЛЯ ВИДАЛЕННЯ:
     updateTotalPrice(); 
 }
+// --- ДОДАВАННЯ ТОВАРУ ---
+
+
+function removeTicket(index) {
+    // 1. Отримуємо дані
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+    
+    // 2. Видаляємо квиток
+    cart.splice(index, 1);
+    
+    // 3. Зберігаємо оновлений масив
+    localStorage.setItem('myCart', JSON.stringify(cart));
+    
+    // 4. Оновлюємо відображення кошика
+    renderCart();
+    
+    // --- ДОДАЙТЕ ЦЕЙ РЯДОК ---
+    updateCartUI(); 
+    // -------------------------
+}
+function updateCartUI() {
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+    
+    // Шукаємо елемент за класом
+    const counterElement = document.querySelector('.cart-count'); 
+    
+    if (counterElement) {
+        counterElement.innerText = cart.length;
+        console.log("Лічильник успішно оновлено на:", cart.length);
+    } else {
+        console.error("Помилка: Елемент .cart-count не знайдено в DOM!");
+    }
+}
+// Додайте цю функцію окремо, щоб вона малювала кошик
+function addToCart(item) {
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+    cart.push(item);
+    localStorage.setItem('myCart', JSON.stringify(cart));
+
+    // Оновлюємо інтерфейс кнопки (ваше рішення)
+    if (event && event.target) {
+        event.target.innerText = "Added";
+        event.target.disabled = true;
+    }
+
+    // ТУТ ОНОВЛЮЄМО ЛІЧИЛЬНИК
+    updateCartUI(); 
+    
+    if (typeof renderCart === 'function') renderCart();
+}
+
+// Функція відображення
+function renderCart() {
+    const cartContainer = document.getElementById('cart-items');
+    const totalElement = document.getElementById('total-sum');
+    if (!cartContainer) return;
+
+    const cart = JSON.parse(localStorage.getItem('myCart')) || [];
+    cartContainer.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        const price = Number(item.price) || 0;
+        total += price; // Тепер додається число до числа
+
+        const newTicket = document.createElement('div');
+        newTicket.className = 'cart-item';
+        
+        const discountLabel = item.isDiscount ? 
+            '<span style="color:red; font-size:12px; margin-left: 5px;">ЗНИЖКА</span>' : '';
+
+        newTicket.innerHTML =`
+            <span><strong>${item.route}</strong> (${item.date}) ${discountLabel}</span>
+            <span>${price} грн</span>
+            <button class="btn-delete" onclick="removeTicket(${index})">Видалити</button>
+        `;
+        cartContainer.appendChild(newTicket);
+    });
+
+    if (totalElement) {
+        totalElement.innerText = total + " грн";
+    }
+}
+
+// --- МАЛЮВАННЯ КОШИКА ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Нам не потрібно тут знову писати весь цикл, 
+    // достатньо просто викликати функцію, яку ми вже створили!
+    renderCart(); 
+});
+
+function clearCart() {
+    // Додаємо підтвердження, щоб користувач випадково не видалив замовлення
+    if (confirm("Ви впевнені, що хочете очистити кошик?")) {
+        localStorage.removeItem('myCart'); // Видаляємо дані з пам'яті
+        location.reload(); // Перезавантажуємо сторінку
+    }
+}
+window.onload = function() {
+    updateCartUI();
+};

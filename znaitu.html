@@ -140,46 +140,40 @@
         </table>
     </div>
 <script>
+
 function bookSeat(button) {
-    // 1. Знаходимо рядок таблиці (tr), в якому лежить ця кнопка
+    // 1. Блокуємо кнопку, щоб не було дублів
+    button.disabled = true;
+    button.innerText = "Успішно заброньовано";
+
+    // 2. Знаходимо дані
     const row = button.closest('tr');
-    
-    // 2. Витягуємо текст із потрібних комірок за їхніми классами
     const route = row.querySelector('.col-route').textContent.trim();
     const time = row.querySelector('.col-time').textContent.trim();
-    
-    // 3. Робимо автоматичний розрахунок ціни залежно від рейсу
-    let price = "1450 грн"; // Базова ціна за замовчуванням
-    if (route.includes("Житомир")) price = "350 грн";
-    if (route.includes("Львів")) price = "800 грн";
-    if (route.includes("Чернігів")) price = "400 грн";
 
-    // 4. Створюємо об'єкт квитка
+    // 3. Розрахунок ціни (ТІЛЬКИ ЧИСЛА!)
+    let price = 1450; 
+    if (route.includes("Житомир")) price = 350;
+    if (route.includes("Львів")) price = 800;
+    if (route.includes("Чернігів")) price = 400;
+
+    // 4. Створюємо об'єкт (важливо: ціна без тексту "грн")
     const ticket = {
         route: route,
         time: time,
-        price: price
+        price: Number(price), 
+        date: "Сьогодні",
+        isDiscount: false
     };
 
-     addToCart(ticket) ;
+    // 5. Викликаємо додавання
+    addToCart(ticket);
+}
 
-    // 6. Твій код для зміни стану кнопки
-    button.innerText = "Успішно заброньовано";
-    button.classList.add("booked");
-    button.disabled = true;
-
-    
-    
-    
-    
     if (typeof updateCartUI === 'function') {
         updateCartUI();
     }
     
-}
-    
-    
-
 </script>
 <script src="script.js"></script>
 </body>

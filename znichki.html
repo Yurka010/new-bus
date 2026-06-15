@@ -1,4 +1,12 @@
-<link rel="stylesheet" href="znichki.css">
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="znichki.css">
+    <title>Знижки</title>
+</head>
+<body>
 <section class="bus-deals-mini">
     <div class="deals-container">
         <div class="deals-header">
@@ -8,99 +16,107 @@
 
         <div class="deals-grid">
             <div class="deal-item">
-                <div class="deal-tag">-50%</div>
-                <div class="deal-info">
-                    <span class="route">Barca → Madrid</span>
-                    <span class="deal-date">Exp. 12 May</span>
-                </div>
-                 
-                <div class="deal-price">
-                    <span class="old">$80</span>
-                    <span class="new">$40</span>
-                </div>
-                <a href="#" class="deal-btn">Get It</a>
-            </div>
-                     <div class="deals-grid">
-            <div class="deal-item">
-                <div class="deal-tag">-50%</div>
-                <div class="deal-info">
-                    <span class="route">Kyiv → Lviv</span>
-                    <span class="deal-date">Exp. 12 May</span>
-                </div>
-                 
-                <div class="deal-price">
-                    <span class="old">$80</span>
-                    <span class="new">$40</span>
-                </div>
-                <a href="#" class="deal-btn">Get It</a>
-            </div>
-            <div class="deals-grid">
-            <div class="deal-item">
-                <div class="deal-tag">-50%</div>
-                <div class="deal-info">
-                    <span class="route">Dnipro → Berlin</span>
-                    <span class="deal-date">Exp. 12 May</span>
-                </div>
-                 
-                <div class="deal-price">
-                    <span class="old">$80</span>
-                    <span class="new">$40</span>
-                </div>
-                <a href="#" class="deal-btn">Get It</a>
-            </div>
-            <div class="deals-grid">
-            <div class="deal-item">
-                <div class="deal-tag">-50%</div>
-                <div class="deal-info">
-                    <span class="route">Kharkiv → Uzhgorod</span>
-                    <span class="deal-date">Exp. 12 May</span>
-                </div>
-                 
-                <div class="deal-price">
-                    <span class="old">$80</span>
-                    <span class="new">$40</span>
-                </div>
-                <a href="#" class="deal-btn">Get It</a>
-            </div>
-            <div class="deals-grid">
-            <div class="deal-item">
-                <div class="deal-tag">-50%</div>
-                <div class="deal-info">
-                    <span class="route">Kyiv → Berlin</span>
-                    <span class="deal-date">Exp. 12 May</span>
-                </div>
-                 
-                <div class="deal-price">
-                    <span class="old">$80</span>
-                    <span class="new">$40</span>
-                </div>
-                <a href="#" class="deal-btn">Get It</a>
-            </div>   
-            <div class="deal-item">
-                <div class="deal-tag">-30%</div>
-                <div class="deal-info">
-                    <span class="route">Lviv → Krakow</span>
-                    <span class="deal-date">Exp. 15 May</span>
-                </div>
-                <div class="deal-price">
-                    <span class="old">$40</span>
-                    <span class="new">$28</span>
-                </div>
-                <a href="#" class="deal-btn">Get It</a>
-            </div>
-              
-            <div class="deal-item">
-                <div class="deal-tag">-20%</div>
-                <div class="deal-info">
-                    <span class="route">Odesa → Varna</span>
-                    <span class="deal-date">Exp. 20 May</span>
-                </div>
-                <div class="deal-price">
-                    <span class="old">$50</span>
-                    <span class="new">$40</span>
-                </div>
-                <a href="#" class="deal-btn">Get It</a>
-            </div>
-        </div>
+    <div class="deal-tag">-20%</div>
+    <div class="deal-info">
+        <span class="deal-title">Colorado-Zambia</span> <span class="deal-date">Exp. 3 April</span>
     </div>
+    
+    <div class="deal-price">
+        <span class="old">1340 грн</span>
+        <span class="new">750 грн</span> </div>
+
+    <button class="buy-btn" onclick="addToCart({route: 'Colorado-Zambia', price:750, date: '3 April', isDiscount: true})">Get It</button>
+</div>
+           <div class="deals-grid">
+            <div class="deal-item">
+    <div class="deal-tag">-30%</div>
+    <div class="deal-info">
+        <span class="deal-title">France-Germany</span> <span class="deal-date">Exp. 18 May</span>
+    </div>
+    
+    <div class="deal-price">
+        <span class="old">1600 грн</span>
+        <span class="new">790 грн</span> </div>
+
+    <button class="buy-btn" onclick="addToCart({route: 'France-Germany', price:790, date: '18 May', isDiscount: true})">Get It</button>
+</div><div class="deals-grid">
+            <div class="deal-item">
+    <div class="deal-tag">-25%</div>
+    <div class="deal-info">
+        <span class="deal-title">Ukraine-Poland</span> <span class="deal-date">Exp.  29 December</span>
+    </div>
+    
+    <div class="deal-price">
+        <span class="old">2250грн</span>
+        <span class="new">1235 грн</span> </div>
+
+    <button class="buy-btn" onclick="addToCart({route: 'Ukraine-Poland', price:1235, date: '29 December', isDiscount: true})">Get It</button>
+</div><div class="deals-grid">
+            <div class="deal-item">
+    <div class="deal-tag">-45%</div>
+    <div class="deal-info">
+        <span class="deal-title">London-Vilnus</span> <span class="deal-date">Exp. 13 June</span>
+    </div>
+    
+    <div class="deal-price">
+        <span class="old">1350 грн</span>
+        <span class="new">635 грн</span> </div>
+
+<button class="buy-btn" onclick="addToCart({route: 'London-Vilnus', price:635, date: '13 June', isDiscount: true})">Get It</button>
+</div><div class="deals-grid">
+            <div class="deal-item">
+    <div class="deal-tag">-60%</div>
+    <div class="deal-info">
+        <span class="deal-title">Kosice-Praga</span> <span class="deal-date">Exp. 1 February</span>
+    </div>
+    
+    <div class="deal-price">
+        <span class="old">1500 грн</span>
+        <span class="new">750 грн</span> </div>
+
+    <button class="buy-btn" onclick="addToCart({route: 'Kosice-Praga', price:750, date: '1 February', isDiscount: true})">Get It</button>
+</div><div class="deals-grid">
+            <div class="deal-item">
+    <div class="deal-tag">-50%</div>
+    <div class="deal-info">
+        <span class="deal-title">Berlin-Rome</Berlin-Rome></span> <span class="deal-date">Exp. 16 August</span>
+    </div>
+    
+    <div class="deal-price">
+        <span class="old">1750 грн</span>
+        <span class="new"> 890 грн</span> </div>
+
+    <button class="buy-btn" onclick="addToCart({route: 'Kosice-Praga', price:890, date: '16 August', isDiscount: true})">Get It</button>
+</div><div class="deals-grid">
+            <div class="deal-item">
+    <div class="deal-tag">-40%</div>
+    <div class="deal-info">
+        <span class="deal-title">Lviv — Uzhgorod</span> <span class="deal-date">Exp. 10 October</span>
+    </div>
+    
+    <div class="deal-price">
+        <span class="old">1320 грн</span>
+        <span class="new">895 грн</span> </div>
+
+    <button class="buy-btn" onclick="addToCart({route: 'Lviv — Uzhgorod', price:895, date: '10 October', isDiscount: true})">Get It</button>
+</div><div class="deals-grid">
+            <div class="deal-item">
+    <div class="deal-tag">-35%</div>
+    <div class="deal-info">
+        <span class="deal-title">Mexico — Paris</span> <span class="deal-date">Exp. 31 March</span>
+    </div>
+    
+    <div class="deal-price">
+        <span class="old">1900 грн</span>
+        <span class="new">1100 грн</span> </div>
+
+    <button class="buy-btn" onclick="addToCart({route: 'Mexico — Paris', price:1100, date: '31 March', isDiscount: true})">Get It</button>
+</div>      
+                
+                
+                    
 </section>
+<script src="script.js"></script>
+
+</body>
+</html>

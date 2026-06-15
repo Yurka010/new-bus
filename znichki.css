@@ -122,3 +122,22 @@
         text-align: center;
     }
 }
+.buy-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Плавна зміна */
+}
+
+.buy-btn:hover {
+    background-color: #219150;
+}
+
+/* Стан кнопки після натискання */
+.buy-btn.added {
+    background-color: #7f8c8d;
+    cursor: default;
+}
